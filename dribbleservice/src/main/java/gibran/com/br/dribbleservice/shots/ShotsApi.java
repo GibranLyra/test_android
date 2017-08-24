@@ -11,7 +11,7 @@ import timber.log.Timber;
 /**
  * Created by gibran.lyra on 23/08/2017.
  */
-public class ShotsApi {
+public class ShotsApi implements ShotsDataSource {
     private static ShotsApi instance;
     private final ShotsService shotsService;
 
@@ -31,8 +31,10 @@ public class ShotsApi {
         instance = new ShotsApi();
     }
 
+
     public Observable<ArrayList<Shot>> getShots() {
-        return shotsService.getShots()
+        /* For the Sample purposes we always get only the first page */
+        return shotsService.getShots(1)
                 .doOnError(e -> Timber.e(e, "getShots: %s", e.getMessage()));
     }
 }
