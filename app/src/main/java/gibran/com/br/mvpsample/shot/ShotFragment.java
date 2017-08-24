@@ -5,11 +5,15 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
 import java.util.ArrayList;
 
@@ -29,7 +33,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     @BindView(R.id.fragment_shot_progress_bar)
     protected ProgressBar progressBar;
     @BindView(R.id.fragment_shot_recycler)
-    protected RecyclerView recycler;
+    protected RecyclerView recyclerView;
 
     private Unbinder unbinder;
     private ShotContract.Presenter presenter;
@@ -74,7 +78,15 @@ public class ShotFragment extends Fragment implements ShotContract.View {
 
     @Override
     public void showShots(ArrayList<Shot> shots) {
-        Snackbar.make(getActivity().findViewById(R.id.rootLayout), "Sucesso", Snackbar.LENGTH_LONG).show();
+        FastItemAdapter<ShotItem> fastAdapter = new FastItemAdapter<>();
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(fastAdapter);
+        for (Shot shot : shots) {
+            ShotItem shotItem = new ShotItem(shot);
+            fastAdapter.add(shotItem);
+        }
     }
 
     @Override
@@ -86,10 +98,10 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     public void showLoading(boolean show) {
         if (show) {
             progressBar.setVisibility(View.VISIBLE);
-            recycler.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
         } else {
             progressBar.setVisibility(View.GONE);
-            recycler.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
         }
     }
 
