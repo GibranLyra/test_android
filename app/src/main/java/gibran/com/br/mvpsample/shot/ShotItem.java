@@ -1,6 +1,7 @@
 package gibran.com.br.mvpsample.shot;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -54,8 +55,11 @@ public class ShotItem extends BaseRecyclerItem<Shot, ShotItem, ShotItem.ViewHold
                     .into(viewHolder.imageView);
         }
         viewHolder.titleView.setText(getModel().getTitle());
-        viewHolder.viewCountView.setText(String.valueOf(getModel().getViewsCount()));
-        viewHolder.createdAtView.setText(getModel().getCreatedAt());
+        Resources resources = context.getResources();
+        viewHolder.viewCountView.setText(String.format(resources.getString(R.string.shot_item_view_count_text),
+                String.valueOf(getModel().getViewsCount())));
+        viewHolder.createdAtView.setText(String.format(resources.getString(R.string.shot_item_created_at_text),
+                getModel().getCreatedAt()));
     }
 
     //reset the view here for better performance

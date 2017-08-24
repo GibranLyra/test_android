@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MvpSample</string>
+
+    <string name="shot_item_view_count_text">%1$s views</string>
+    <string name="shot_item_created_at_text">Created at %1$s</string>
 </resources>
