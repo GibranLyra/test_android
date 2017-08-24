@@ -20,12 +20,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class DribbleApiModule {
 
-    private static final String BASE_URL = "http://developer.dribbble.com/v1/";
+    private static final String BASE_URL = "https://api.dribbble.com/v1/";
     private static final String API_KEY = "6b33e0f447946266f3a936b31ab32531e314c833ce758250a0058d8c086c4f23";
     private static Retrofit retrofit;
-    private static Gson gson;
 
-    public static void setRetrofit(Gson gson, @Nullable LoggingInterceptor.Level logLevel) {
+    public static void setRetrofit(@Nullable LoggingInterceptor.Level logLevel) {
         if (logLevel == null) {
             logLevel = LoggingInterceptor.Level.BASIC;
         }

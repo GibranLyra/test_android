@@ -87,6 +87,9 @@ dependencies {
     compile 'com.mikepenz:fastadapter-commons:2.6.0@aar'
     // JodaTime
     compile 'net.danlew:android.joda:2.9.5'
+    //Timezone
+    compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
+    compile project(path: ':dribbleservice')
 }
 
 String java7 = getJavaVersion(7)
