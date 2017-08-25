@@ -52,6 +52,11 @@ public class ShotItem extends BaseRecyclerItem<Shot, ShotItem, ShotItem.ViewHold
         if (shot.getImages() != null && !TextUtils.isEmpty(shot.getImages().getNormal())) {
             Glide.with(context)
                     .load(shot.getImages().getNormal())
+                    .placeholder(R.drawable.placeholder)
+                    .into(viewHolder.imageView);
+        } else {
+            Glide.with(context)
+                    .load(R.drawable.placeholder)
                     .into(viewHolder.imageView);
         }
         viewHolder.titleView.setText(getModel().getTitle());

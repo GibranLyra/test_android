@@ -19,7 +19,8 @@
         <ImageView
             android:id="@+id/shot_item_image"
             android:layout_width="160dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            tools:src="@drawable/placeholder"/>
 
         <LinearLayout
             android:layout_width="match_parent"
