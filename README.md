@@ -1,8 +1,8 @@
 # Mvp Sample
 
-> A demonstration of MVP pattern using the trending libs of the android world
+ A demonstration of MVP pattern using the trending libraries of the android world.
 
-## Used libraries
+## Used Libraries
 - RxJava2
 - Butterknife
 - Timber
@@ -11,5 +11,5 @@
 - JodaTime
 
 # Instalation instructions
- Clone the project, make sure that you have java 8 and the JAVA_HOME enviroment variable configured
+ Clone the project, make sure that you have java 8 and the JAVA_HOME enviroment variable configured.
 
