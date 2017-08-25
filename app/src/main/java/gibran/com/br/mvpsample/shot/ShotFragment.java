@@ -2,7 +2,6 @@ package gibran.com.br.mvpsample.shot;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -29,7 +28,6 @@ import gibran.com.br.mvpsample.R;
 
 public class ShotFragment extends Fragment implements ShotContract.View {
 
-    CoordinatorLayout coordinatorLayout;
     @BindView(R.id.fragment_shot_progress_bar)
     protected ProgressBar progressBar;
     @BindView(R.id.fragment_shot_recycler)
@@ -91,7 +89,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
 
     @Override
     public void showShotsError() {
-        Snackbar.make(coordinatorLayout, "Ocorreu um erro", Snackbar.LENGTH_LONG).show();
+        Snackbar.make(getActivity().findViewById(R.id.rootLayout), R.string.generic_error, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

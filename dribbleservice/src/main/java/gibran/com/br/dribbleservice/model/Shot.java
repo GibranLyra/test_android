@@ -1,12 +1,15 @@
 
 package gibran.com.br.dribbleservice.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Shot {
+public class Shot implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -284,4 +287,81 @@ public class Shot {
         this.team = team;
     }
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeInt(this.width);
+        dest.writeInt(this.height);
+        dest.writeParcelable(this.images, flags);
+        dest.writeInt(this.viewsCount);
+        dest.writeInt(this.likesCount);
+        dest.writeInt(this.commentsCount);
+        dest.writeInt(this.attachmentsCount);
+        dest.writeInt(this.reboundsCount);
+        dest.writeInt(this.bucketsCount);
+        dest.writeString(this.createdAt);
+        dest.writeString(this.updatedAt);
+        dest.writeString(this.htmlUrl);
+        dest.writeString(this.attachmentsUrl);
+        dest.writeString(this.bucketsUrl);
+        dest.writeString(this.commentsUrl);
+        dest.writeString(this.likesUrl);
+        dest.writeString(this.projectsUrl);
+        dest.writeString(this.reboundsUrl);
+        dest.writeByte(this.animated ? (byte) 1 : (byte) 0);
+        dest.writeStringList(this.tags);
+        dest.writeParcelable(this.user, flags);
+        dest.writeParcelable(this.team, flags);
+    }
+
+    public Shot() {
+    }
+
+    protected Shot(Parcel in) {
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.description = in.readString();
+        this.width = in.readInt();
+        this.height = in.readInt();
+        this.images = in.readParcelable(Images.class.getClassLoader());
+        this.viewsCount = in.readInt();
+        this.likesCount = in.readInt();
+        this.commentsCount = in.readInt();
+        this.attachmentsCount = in.readInt();
+        this.reboundsCount = in.readInt();
+        this.bucketsCount = in.readInt();
+        this.createdAt = in.readString();
+        this.updatedAt = in.readString();
+        this.htmlUrl = in.readString();
+        this.attachmentsUrl = in.readString();
+        this.bucketsUrl = in.readString();
+        this.commentsUrl = in.readString();
+        this.likesUrl = in.readString();
+        this.projectsUrl = in.readString();
+        this.reboundsUrl = in.readString();
+        this.animated = in.readByte() != 0;
+        this.tags = in.createStringArrayList();
+        this.user = in.readParcelable(User.class.getClassLoader());
+        this.team = in.readParcelable(Team.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<Shot> CREATOR = new Parcelable.Creator<Shot>() {
+        @Override
+        public Shot createFromParcel(Parcel source) {
+            return new Shot(source);
+        }
+
+        @Override
+        public Shot[] newArray(int size) {
+            return new Shot[size];
+        }
+    };
 }

@@ -12,7 +12,6 @@ import io.reactivex.disposables.Disposable;
 
 public class ShotPresenter implements ShotContract.Presenter {
 
-
     private ShotsDataSource shotRepository;
     private ShotContract.View view;
     private Disposable getShotsDisposable;
