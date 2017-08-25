@@ -20,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import gibran.com.br.dribbleservice.model.Shot;
+import gibran.com.br.mvpsample.ActivityRoutes;
 import gibran.com.br.mvpsample.R;
 
 /**
@@ -85,6 +86,10 @@ public class ShotFragment extends Fragment implements ShotContract.View {
             ShotItem shotItem = new ShotItem(shot);
             fastAdapter.add(shotItem);
         }
+        fastAdapter.withOnClickListener((v, adapter, item, position) -> {
+            ActivityRoutes.getInstance().openShotDetailsActivity(getContext(), item.getModel());
+            return false;
+        });
     }
 
     @Override

@@ -27,7 +27,7 @@ public class ShotActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shot);
+        setContentView(R.layout.activity_shot_details);
         ButterKnife.bind(this);
         setupViews();
     }

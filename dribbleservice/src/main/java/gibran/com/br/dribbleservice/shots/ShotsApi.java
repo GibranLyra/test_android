@@ -38,7 +38,7 @@ public class ShotsApi implements ShotsDataSource {
                 .doOnError(e -> Timber.e(e, "getShots: %s", e.getMessage()));
     }
 
-    public Observable<Shot> getShot(String id) {
+    public Observable<Shot> getShot(int id) {
         return shotsService.getShot(id)
                 .doOnError(e -> Timber.e(e, "getShots: %s", e.getMessage()));
     }

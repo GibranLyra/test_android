@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import gibran.com.br.dribbleservice.model.Shot;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -15,7 +16,7 @@ interface ShotsService {
     @GET("shots")
     Observable<ArrayList<Shot>> getShots(@Query("page") int page);
 
-    @GET("shot")
-    Observable<Shot> getShot(@Query("id") String id);
+    @GET("shots/{id}")
+    Observable<Shot> getShot(@Path("id") int id);
 
 }

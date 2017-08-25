@@ -13,12 +13,12 @@ public class ShotDetailsPresenter implements ShotDetailsContract.Presenter {
 
     private ShotsDataSource shotsRepository;
     private ShotDetailsContract.View view;
-    private ShotDetailsFragment fragment;
     private Disposable getShotDisposable;
 
-    public ShotDetailsPresenter(ShotsDataSource shotsRepository, ShotDetailsFragment fragment) {
+    public ShotDetailsPresenter(ShotsDataSource shotsRepository, ShotDetailsContract.View view) {
         this.shotsRepository = shotsRepository;
-        this.fragment = fragment;
+        this.view = view;
+        this.view.setPresenter(this);
     }
 
     @Override

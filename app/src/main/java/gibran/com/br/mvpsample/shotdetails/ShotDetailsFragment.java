@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ContentLoadingProgressBar;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +28,7 @@ import gibran.com.br.mvpsample.R;
 public class ShotDetailsFragment extends Fragment implements ShotDetailsContract.View {
 
     @BindView(R.id.fragment_shot_details_progress_bar)
-    TextView progressBar;
+    ContentLoadingProgressBar progressBar;
     @BindView(R.id.fragment_shot_details_title)
     TextView titleView;
     @BindView(R.id.fragment_shot_details_image)
@@ -55,6 +57,7 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shot_details, container, false);
+        unbinder = ButterKnife.bind(this, view);
         if (savedInstanceState == null) {
             Bundle bundle = this.getArguments();
             Shot shot = bundle.getParcelable(EXTRA_SHOT);
@@ -64,7 +67,6 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
                 throw new RuntimeException("Shot cannot be null");
             }
         }
-        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -92,10 +94,11 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
                     .into(imageView);
         }
 
-        descriptionView.setText(shot.getDescription());
+        descriptionView.setText(Html.fromHtml(shot.getDescription()));
         viewsCountView.setText(String.format(getResources().getString(R.string.shot_item_view_count_text),
                 String.valueOf(shot.getViewsCount())));
-        commentsCountView.setText(shot.getCommentsCount());
+        commentsCountView.setText(String.format(getResources().getString(R.string.shot_item_created_at_text),
+                String.valueOf(shot.getCommentsCount())));
         createdAtView.setText(String.format(getResources().getString(R.string.shot_item_created_at_text),
                 shot.getCreatedAt()));
     }
