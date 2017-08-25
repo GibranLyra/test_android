@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".shot.ShotActivity">
+            android:name=".shot.ShotActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -24,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".shotdetails.ShotDetailsActivity">
+            android:name=".shotdetails.ShotDetailsActivity"
+            android:label="Shot details">
 
         </activity>
     </application>

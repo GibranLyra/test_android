@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,6 +16,8 @@ import gibran.com.br.mvpsample.helpers.ActivityHelper;
 
 public class ShotActivity extends AppCompatActivity {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.rootLayout)
     CoordinatorLayout coordinatorLayout;
 
@@ -29,6 +33,11 @@ public class ShotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shot_details);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(R.string.app_name);
+        }
         setupViews();
     }
 

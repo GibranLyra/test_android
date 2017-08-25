@@ -6,6 +6,7 @@
     android:id="@+id/shot_item_card_view"
     android:layout_width="match_parent"
     android:layout_height="120dp"
+    android:clipToPadding="false"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="4dp"
