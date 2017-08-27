@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.mvpsample.R;
 import gibran.com.br.mvpsample.base.BaseRecyclerItem;
+import gibran.com.br.mvpsample.helpers.ActivityHelper;
 
 /**
  * Created by gibranlyra on 24/08/17.
@@ -63,8 +64,9 @@ public class ShotItem extends BaseRecyclerItem<Shot, ShotItem, ShotItem.ViewHold
         Resources resources = context.getResources();
         viewHolder.viewCountView.setText(String.format(resources.getString(R.string.shot_item_view_count_text),
                 String.valueOf(getModel().getViewsCount())));
+        String createdAt = ActivityHelper.getFormatedDate(getModel().getCreatedAt());
         viewHolder.createdAtView.setText(String.format(resources.getString(R.string.shot_item_created_at_text),
-                getModel().getCreatedAt()));
+                createdAt));
     }
 
     //reset the view here for better performance

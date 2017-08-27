@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import org.joda.time.DateTime;
+
 /**
  * Created by gibranlyra on 24/08/17.
  */
@@ -17,4 +19,11 @@ public class ActivityHelper {
         transaction.add(frameId, fragment);
         transaction.commitAllowingStateLoss();
     }
+
+    public static String getFormatedDate(String date) {
+        DateTime dateTime = new DateTime(date);
+        String formatedDate = dateTime.toString("dd/MM/yyyy - HH:mm");
+        return formatedDate;
+    }
+
 }
