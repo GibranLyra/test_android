@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +35,8 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     protected ProgressBar progressBar;
     @BindView(R.id.fragment_shot_recycler)
     protected RecyclerView recyclerView;
+    @BindView(R.id.fragment_shot_swipe)
+    protected SwipeRefreshLayout swipeToRefresh;
 
     private Unbinder unbinder;
     private ShotContract.Presenter presenter;
@@ -54,6 +57,11 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shot, container, false);
         unbinder = ButterKnife.bind(this, view);
+        swipeToRefresh.setOnRefreshListener(() -> presenter.loadShots());
+        swipeToRefresh.setColorSchemeResources(
+                R.color.accent,
+                R.color.colorSecondary,
+                R.color.primary);
         return view;
     }
 
@@ -106,12 +114,17 @@ public class ShotFragment extends Fragment implements ShotContract.View {
 
     @Override
     public void showShots(ArrayList<Shot> shots) {
+        swipeToRefresh.setRefreshing(false);
         this.shots = shots;
         fastAdapter = new FastItemAdapter<>();
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(fastAdapter);
+        if (recyclerView.getAdapter() == null) {
+            recyclerView.setAdapter(fastAdapter);
+        } else {
+            fastAdapter.clear();
+        }
         for (Shot shot : shots) {
             ShotItem shotItem = new ShotItem(shot);
             fastAdapter.add(shotItem);
@@ -126,6 +139,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
 
     @Override
     public void showShotsError() {
+        swipeToRefresh.setRefreshing(false);
         Snackbar.make(getActivity().findViewById(R.id.rootLayout), R.string.generic_error, Snackbar.LENGTH_LONG).show();
     }
 
