@@ -101,8 +101,10 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
                     .load(R.drawable.placeholder)
                     .into(imageView);
         }
-
-        descriptionView.setText(Html.fromHtml(shot.getDescription()));
+        //Some Shots dont have description, so we check if it have one
+        if (!TextUtils.isEmpty(shot.getDescription())) {
+            descriptionView.setText(Html.fromHtml(shot.getDescription()));
+        }
         viewsCountView.setText(String.format(getResources().getString(R.string.shot_item_view_count_text),
                 String.valueOf(shot.getViewsCount())));
         commentsCountView.setText(String.format(getResources().getString(R.string.shot_item_comments_count),

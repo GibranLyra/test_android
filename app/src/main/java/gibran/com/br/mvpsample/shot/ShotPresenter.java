@@ -26,7 +26,7 @@ public class ShotPresenter implements ShotContract.Presenter {
 
     @Override
     public void subscribe() {
-
+        //UNUSED
     }
 
     @Override

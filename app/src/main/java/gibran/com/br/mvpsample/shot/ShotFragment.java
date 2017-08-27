@@ -29,6 +29,7 @@ import gibran.com.br.mvpsample.R;
 
 public class ShotFragment extends Fragment implements ShotContract.View {
 
+    private static final String LOADED_SHOTS = "loadedShots";
     @BindView(R.id.fragment_shot_progress_bar)
     protected ProgressBar progressBar;
     @BindView(R.id.fragment_shot_recycler)
@@ -36,6 +37,11 @@ public class ShotFragment extends Fragment implements ShotContract.View {
 
     private Unbinder unbinder;
     private ShotContract.Presenter presenter;
+    private FastItemAdapter<ShotItem> fastAdapter;
+    protected boolean isViewLoaded;
+    @Nullable
+    private Bundle savedInstanceState;
+    private ArrayList<Shot> shots;
 
     public static ShotFragment newInstance() {
         ShotFragment fragment = new ShotFragment();
@@ -54,7 +60,20 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.loadShots();
+        this.savedInstanceState = savedInstanceState;
+        if (savedInstanceState == null) {
+            presenter.loadShots();
+        } else {
+            shots = savedInstanceState.getParcelableArrayList(LOADED_SHOTS);
+            if (shots == null) {
+                //If we are restoring the state but dont have shots, we load it again,
+                presenter.loadShots();
+            } else {
+                //If we already have the shots we simply add them to the list
+                showShots(shots);
+                showLoading(false);
+            }
+        }
     }
 
     @Override
@@ -76,8 +95,19 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if (fastAdapter != null) {
+            //add the values which need to be saved from the adapter to the bundle
+            outState = fastAdapter.saveInstanceState(outState);
+        }
+        outState.putParcelableArrayList(LOADED_SHOTS, shots);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void showShots(ArrayList<Shot> shots) {
-        FastItemAdapter<ShotItem> fastAdapter = new FastItemAdapter<>();
+        this.shots = shots;
+        fastAdapter = new FastItemAdapter<>();
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -90,6 +120,8 @@ public class ShotFragment extends Fragment implements ShotContract.View {
             ActivityRoutes.getInstance().openShotDetailsActivity(getContext(), item.getModel(), v);
             return false;
         });
+        //restore selections (this has to be done after the items were added
+        fastAdapter.withSavedInstanceState(savedInstanceState);
     }
 
     @Override
@@ -99,6 +131,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
 
     @Override
     public void showLoading(boolean show) {
+        isViewLoaded = !show;
         if (show) {
             progressBar.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
