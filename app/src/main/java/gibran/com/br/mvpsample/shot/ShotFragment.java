@@ -87,7 +87,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
             fastAdapter.add(shotItem);
         }
         fastAdapter.withOnClickListener((v, adapter, item, position) -> {
-            ActivityRoutes.getInstance().openShotDetailsActivity(getContext(), item.getModel());
+            ActivityRoutes.getInstance().openShotDetailsActivity(getContext(), item.getModel(), v);
             return false;
         });
     }

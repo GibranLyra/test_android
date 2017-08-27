@@ -5,4 +5,6 @@
     <string name="shot_item_created_at_text">Created at %1$s</string>
     <string name="shot_item_comments_count">%1$s comments</string>
     <string name="generic_error">Ocorreu um erro.</string>
+    <string name="shot_item_image_description">Shot image</string>
+    <string name="shot_details_image_description">Shot image</string>
 </resources>

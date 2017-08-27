@@ -33,13 +33,13 @@ public class ShotsApi implements ShotsDataSource {
 
 
     public Observable<ArrayList<Shot>> getShots() {
-        /* For the Sample purposes we always get only the first page */
-        return shotsService.getShots(1)
+        /* For the Sample purposes we always get only the first page with 30 items */
+        return shotsService.getShots(1, 30)
                 .doOnError(e -> Timber.e(e, "getShots: %s", e.getMessage()));
     }
 
     public Observable<Shot> getShot(int id) {
         return shotsService.getShot(id)
-                .doOnError(e -> Timber.e(e, "getShots: %s", e.getMessage()));
+                .doOnError(e -> Timber.e(e, "getShot: %s", e.getMessage()));
     }
 }

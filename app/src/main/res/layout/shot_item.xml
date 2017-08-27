@@ -21,6 +21,8 @@
             android:id="@+id/shot_item_image"
             android:layout_width="160dp"
             android:layout_height="match_parent"
+            android:contentDescription="@string/shot_item_image_description"
+            android:transitionName="shot_image_transition"
             tools:src="@drawable/placeholder"/>
 
         <LinearLayout

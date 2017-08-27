@@ -37,6 +37,8 @@
                     android:id="@+id/fragment_shot_details_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/shot_details_image_description"
+                    android:transitionName="shot_image_transition"
                     tools:src="@drawable/placeholder"/>
 
                 <TextView
