@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.mvpsample.R;
+import gibran.com.br.mvpsample.helpers.ActivityHelper;
 
 /**
  * Created by gibranlyra on 25/08/17.
@@ -28,6 +29,7 @@ import gibran.com.br.mvpsample.R;
 
 public class ShotDetailsFragment extends Fragment implements ShotDetailsContract.View {
 
+    private static final String LOADED_SHOT = "loadedShot";
     @BindView(R.id.fragment_shot_details_progress_bar)
     ContentLoadingProgressBar progressBar;
     @BindView(R.id.fragment_shot_details_card_view)
@@ -48,6 +50,7 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
     private static final String EXTRA_SHOT = "ShotId";
     private Unbinder unbinder;
     private ShotDetailsContract.Presenter presenter;
+    private Shot shot;
 
     public static ShotDetailsFragment newInstance(Shot shot) {
         ShotDetailsFragment fragment = new ShotDetailsFragment();
@@ -62,20 +65,19 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
         View view = inflater.inflate(R.layout.fragment_shot_details, container, false);
         unbinder = ButterKnife.bind(this, view);
         if (savedInstanceState == null) {
-            Bundle bundle = this.getArguments();
-            Shot shot = bundle.getParcelable(EXTRA_SHOT);
-            if (shot != null) {
-                presenter.loadShot(shot.getId());
+            presenter.loadShot(getShotFromBundle().getId());
+        } else {
+            shot = savedInstanceState.getParcelable(LOADED_SHOT);
+            if (shot == null) {
+                //If we are restoring the state but dont have a shot, we load it
+                presenter.loadShot(getShotFromBundle().getId());
             } else {
-                throw new RuntimeException("Shot cannot be null");
+                //If we already have the shots we simply add them to the list
+                showShot(shot);
+                showLoading(false);
             }
         }
         return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
@@ -85,8 +87,25 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(LOADED_SHOT, shot);
+    }
+
+    @Override
     public void showShot(Shot shot) {
+        this.shot = shot;
         setupView(shot);
+    }
+
+    private Shot getShotFromBundle() {
+        Bundle bundle = this.getArguments();
+        Shot shot = bundle.getParcelable(EXTRA_SHOT);
+        if (shot != null) {
+            return shot;
+        } else {
+            throw new RuntimeException("Shot cannot be null");
+        }
     }
 
     private void setupView(Shot shot) {
@@ -101,7 +120,7 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
                     .load(R.drawable.placeholder)
                     .into(imageView);
         }
-        //Some Shots dont have description, so we check if it have one
+        //Some Shots don`t have description, so we check if it have one
         if (!TextUtils.isEmpty(shot.getDescription())) {
             descriptionView.setText(Html.fromHtml(shot.getDescription()));
         }
@@ -109,8 +128,9 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
                 String.valueOf(shot.getViewsCount())));
         commentsCountView.setText(String.format(getResources().getString(R.string.shot_item_comments_count),
                 String.valueOf(shot.getCommentsCount())));
+        String createdAt = ActivityHelper.getFormatedDate(shot.getCreatedAt());
         createdAtView.setText(String.format(getResources().getString(R.string.shot_item_created_at_text),
-                shot.getCreatedAt()));
+                createdAt));
     }
 
     @Override

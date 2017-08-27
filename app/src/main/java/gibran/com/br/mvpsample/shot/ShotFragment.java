@@ -66,7 +66,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
         } else {
             shots = savedInstanceState.getParcelableArrayList(LOADED_SHOTS);
             if (shots == null) {
-                //If we are restoring the state but dont have shots, we load it again,
+                //If we are restoring the state but dont have shots, we load it.
                 presenter.loadShots();
             } else {
                 //If we already have the shots we simply add them to the list
