@@ -8,6 +8,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gibran.com.br.dribbleservice.shots.ShotsApi;
@@ -31,14 +36,35 @@ public class ShotActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shot_details);
+        setContentView(R.layout.activity_shot);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle(R.string.app_name);
         }
+        createDrawer();
         setupViews();
+    }
+
+    private void createDrawer() {
+        AccountHeader headerResult = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withHeaderBackground(R.drawable.header)
+                .addProfiles(
+                        new ProfileDrawerItem().withName("Gibran Lyra").withEmail("lyra.gibran@gmail.com")
+                                .withIcon(getResources().getDrawable(R.drawable.profile))
+                )
+                .withOnAccountHeaderListener((view, profile, currentProfile) -> false)
+                .build();
+        //Now create your drawer and pass the AccountHeader.Result
+        new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(toolbar)
+                .withActionBarDrawerToggle(true)
+                .withAccountHeader(headerResult)
+                .withActionBarDrawerToggleAnimated(true)
+                .build();
     }
 
     private void setupViews() {
