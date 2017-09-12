@@ -156,6 +156,11 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     }
 
     @Override
+    public boolean isActive() {
+        return isAdded();
+    }
+
+    @Override
     public void setPresenter(ShotContract.Presenter presenter) {
         this.presenter = presenter;
     }
