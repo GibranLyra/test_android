@@ -1,6 +1,7 @@
 package gibran.com.br.mvpsample;
 
 import android.app.Application;
+import android.support.multidex.MultiDex;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
@@ -24,6 +25,7 @@ public class AppContext extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        MultiDex.install(this);
         initializeTimezone();
         initializeTimber();
         initializeApiModules();

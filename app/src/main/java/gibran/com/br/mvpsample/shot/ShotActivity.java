@@ -3,7 +3,9 @@ package gibran.com.br.mvpsample.shot;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +20,7 @@ import butterknife.ButterKnife;
 import gibran.com.br.dribbleservice.shots.ShotsApi;
 import gibran.com.br.mvpsample.R;
 import gibran.com.br.mvpsample.helpers.ActivityHelper;
+import gibran.com.br.mvpsample.helpers.EspressoIdlingResource;
 
 public class ShotActivity extends AppCompatActivity {
 
@@ -75,5 +78,10 @@ public class ShotActivity extends AppCompatActivity {
             ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), shotFragment, R.id.view_container);
         }
         presenter = new ShotPresenter(ShotsApi.getInstance(), shotFragment);
+    }
+
+    @VisibleForTesting
+    public IdlingResource getCountingIdlingResource() {
+        return EspressoIdlingResource.getIdlingResource();
     }
 }

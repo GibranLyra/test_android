@@ -6,6 +6,7 @@ import android.view.View;
 
 import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.dribbleservice.shots.ShotsDataSource;
+import gibran.com.br.mvpsample.helpers.EspressoIdlingResource;
 import gibran.com.br.mvpsample.helpers.ObserverHelper;
 import io.reactivex.disposables.Disposable;
 
@@ -43,8 +44,16 @@ public class ShotPresenter implements ShotContract.Presenter {
     @Override
     public void loadShots() {
         view.showLoading(true);
+        // The network request might be handled in a different thread so make sure Espresso knows
+        // that the app is busy until the response is handled.
+        EspressoIdlingResource.increment(); // App is busy until further notice
         getShotsDisposable = shotRepository.getShots()
                 .compose(ObserverHelper.getInstance().applySchedulers())
+                .doOnTerminate(() -> {
+                    if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
+                        EspressoIdlingResource.decrement(); // Set app as idle.
+                    }
+                })
                 .subscribe(
                         shots -> {
                             view.showLoading(false);

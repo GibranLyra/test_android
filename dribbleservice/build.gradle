@@ -59,10 +59,6 @@ ext {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
     //Retrofit
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
@@ -79,6 +75,8 @@ dependencies {
     compile 'net.danlew:android.joda:2.9.5'
     //Timezone
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
+    //MultiDex
+    compile 'com.android.support:multidex:1.0.1'
 }
 
 String java7 = getJavaVersion(7)

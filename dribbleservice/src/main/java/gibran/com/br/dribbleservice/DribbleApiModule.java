@@ -1,14 +1,13 @@
 package gibran.com.br.dribbleservice;
 
 
-import android.support.annotation.Nullable;
-
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.threeten.bp.Clock;
 
+import io.reactivex.annotations.Nullable;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
