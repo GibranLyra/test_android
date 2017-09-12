@@ -326,6 +326,8 @@ public class Shot implements Parcelable {
     }
 
     public Shot(int id, String title) {
+        this.id = id;
+        this.title = title;
     }
 
     protected Shot(Parcel in) {

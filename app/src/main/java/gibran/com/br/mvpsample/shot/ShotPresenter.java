@@ -1,10 +1,15 @@
 package gibran.com.br.mvpsample.shot;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.View;
 
+import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.dribbleservice.shots.ShotsDataSource;
 import gibran.com.br.mvpsample.helpers.ObserverHelper;
 import io.reactivex.disposables.Disposable;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Created by gibranlyra on 24/08/17.
@@ -50,5 +55,11 @@ public class ShotPresenter implements ShotContract.Presenter {
                             view.showShotsError();
                         });
 
+    }
+
+    @Override
+    public void openShotDetails(Shot shot, @Nullable View v) {
+        checkNotNull(shot, "Shot cannot be null!");
+        view.showShotDetailsUi(shot, v);
     }
 }

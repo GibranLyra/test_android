@@ -16,6 +16,8 @@ import gibran.com.br.mvpsample.shot.ShotContract;
 import gibran.com.br.mvpsample.shot.ShotPresenter;
 import io.reactivex.Observable;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,7 +37,7 @@ public class ShotPresenterTest {
     private ArrayList<Shot> SHOTS;
 
     @Before
-    public void setupNotesPresenter() {
+    public void setupShotPresenter() {
         // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
         // inject the mocks in the test the initMocks method needs to be called.
         MockitoAnnotations.initMocks(this);
@@ -51,7 +53,7 @@ public class ShotPresenterTest {
     }
 
     @Test
-    public void loadShotsFromServiceAndLoadIntoView() {
+    public void loadAllShotsFromServiceAndLoadIntoView() {
         // Given an initialized ShotsPresenter with initialized tasks
         when(shotsService.getShots()).thenReturn(Observable.just(SHOTS));
         // When loading of Tasks is requested
@@ -61,6 +63,17 @@ public class ShotPresenterTest {
         verify(shotsView).showLoading(true);
         // Then progress indicator is hidden and all tasks are shown in UI
         verify(shotsView).showLoading(false);
+        verify(shotsView).showShots(SHOTS);
     }
 
+    @Test
+    public void clickOnShot_ShowDetailUi() {
+        // Given a stubbed active task
+        Shot shot = new Shot(3800291, "Title 1");
+        // When open task details is requested
+        shotPresenter.openShotDetails(shot, null);
+
+        // Then shot detail UI is shown
+        verify(shotsView).showShotDetailsUi(any(Shot.class), eq(null));
+    }
 }

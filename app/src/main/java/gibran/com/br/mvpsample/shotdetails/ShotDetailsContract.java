@@ -13,6 +13,8 @@ public interface ShotDetailsContract {
         void showShotError();
 
         void showLoading(boolean show);
+
+        boolean isActive();
     }
 
     interface Presenter extends BaseContractPresenter {

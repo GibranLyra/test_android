@@ -2,10 +2,8 @@ package gibran.com.br.mvpsample.helpers;
 
 
 import java.io.EOFException;
-import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
-import br.com.net.nowkids.service.Constants;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
@@ -29,6 +27,7 @@ public class ObserverHelper {
         }
         return instance;
     }
+
     public <T> ObservableTransformer<T, T> retryOnEOFException() {
         return observable -> observable.retryWhen(new RetryWithDelay(7, 100, EOFException.class));
     }
@@ -36,11 +35,6 @@ public class ObserverHelper {
     public <T> ObservableTransformer<T, T> applySchedulers() {
         return observable -> observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-    }
-
-    public <T> ObservableTransformer<T, T> applyTimeOutRetry() {
-        return observable -> observable.retry((attempts, error) -> error
-                instanceof SocketTimeoutException && attempts < Constants.MAX_RETRY_ATTEMPS);
     }
 
     public void safelyDispose(Disposable... disposables) {

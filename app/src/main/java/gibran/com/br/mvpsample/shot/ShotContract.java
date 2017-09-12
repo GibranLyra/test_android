@@ -1,5 +1,7 @@
 package gibran.com.br.mvpsample.shot;
 
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 
 import gibran.com.br.dribbleservice.model.Shot;
@@ -17,9 +19,13 @@ public interface ShotContract {
         void showLoading(boolean show);
 
         boolean isActive();
+
+        void showShotDetailsUi(Shot shot, @Nullable android.view.View v);
     }
 
     interface Presenter extends BaseContractPresenter {
         void loadShots();
+
+        void openShotDetails(Shot shot, @Nullable android.view.View v);
     }
 }

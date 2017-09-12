@@ -130,7 +130,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
             fastAdapter.add(shotItem);
         }
         fastAdapter.withOnClickListener((v, adapter, item, position) -> {
-            ActivityRoutes.getInstance().openShotDetailsActivity(getContext(), item.getModel(), v);
+            presenter.openShotDetails(item.getModel(), v);
             return false;
         });
         //restore selections (this has to be done after the items were added
@@ -158,6 +158,11 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     @Override
     public boolean isActive() {
         return isAdded();
+    }
+
+    @Override
+    public void showShotDetailsUi(Shot shot, @Nullable View v) {
+        ActivityRoutes.getInstance().openShotDetailsActivity(getContext(), shot, v);
     }
 
     @Override
