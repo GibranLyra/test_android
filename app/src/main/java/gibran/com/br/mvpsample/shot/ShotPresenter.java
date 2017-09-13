@@ -9,6 +9,7 @@ import gibran.com.br.dribbleservice.shots.ShotsDataSource;
 import gibran.com.br.mvpsample.helpers.EspressoIdlingResource;
 import gibran.com.br.mvpsample.helpers.ObserverHelper;
 import io.reactivex.disposables.Disposable;
+import timber.log.Timber;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -47,7 +48,7 @@ public class ShotPresenter implements ShotContract.Presenter {
         // The network request might be handled in a different thread so make sure Espresso knows
         // that the app is busy until the response is handled.
         EspressoIdlingResource.increment(); // App is busy until further notice
-        getShotsDisposable = shotRepository.getShots()
+        getShotsDisposable = shotRepository.getShots(0)
                 .compose(ObserverHelper.getInstance().applySchedulers())
                 .doOnTerminate(() -> {
                     if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
@@ -59,10 +60,21 @@ public class ShotPresenter implements ShotContract.Presenter {
                             view.showLoading(false);
                             view.showShots(shots);
                         },
-                        __ -> {
+                        e -> {
+                            Timber.e(e, "loadShots: %s", e.getMessage());
                             view.showLoading(false);
                             view.showShotsError();
                         });
+
+    }
+
+    @Override
+    public void loadPage(int currentPage) {
+        getShotsDisposable = shotRepository.getShots(currentPage)
+                .compose(ObserverHelper.getInstance().applySchedulers())
+                .subscribe(
+                        shots -> view.addShots(shots),
+                        __ -> view.addMoreShotsError());
 
     }
 

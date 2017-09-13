@@ -12,6 +12,7 @@ import timber.log.Timber;
  * Created by gibran.lyra on 23/08/2017.
  */
 public class ShotsApi implements ShotsDataSource {
+    private static final int ITEMS_PER_PAGE = 30;
     private static ShotsApi instance;
     private final ShotsService shotsService;
 
@@ -33,8 +34,12 @@ public class ShotsApi implements ShotsDataSource {
 
 
     public Observable<ArrayList<Shot>> getShots() {
-        /* For the Sample purposes we always get only the first page with 30 items */
-        return shotsService.getShots(1, 30)
+        return shotsService.getShots()
+                .doOnError(e -> Timber.e(e, "getShots: %s", e.getMessage()));
+    }
+
+    public Observable<ArrayList<Shot>> getShots(int page) {
+        return shotsService.getShots(page, ITEMS_PER_PAGE)
                 .doOnError(e -> Timber.e(e, "getShots: %s", e.getMessage()));
     }
 

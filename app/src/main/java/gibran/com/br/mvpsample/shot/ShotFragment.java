@@ -13,7 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.mikepenz.fastadapter.adapters.FooterAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter_extensions.items.ProgressItem;
+import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListener;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     private Unbinder unbinder;
     private ShotContract.Presenter presenter;
     private FastItemAdapter<ShotItem> fastAdapter;
+    private FooterAdapter<ProgressItem> footerAdapter;
     protected boolean isViewLoaded;
     @Nullable
     private Bundle savedInstanceState;
@@ -120,15 +124,22 @@ public class ShotFragment extends Fragment implements ShotContract.View {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //create our FooterAdapter which will manage the progress items
+        footerAdapter = new FooterAdapter<>();
         if (recyclerView.getAdapter() == null) {
-            recyclerView.setAdapter(fastAdapter);
+            recyclerView.setAdapter(footerAdapter.wrap(fastAdapter));
+            recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(footerAdapter) {
+
+                @Override
+                public void onLoadMore(int currentPage) {
+                    presenter.loadPage(currentPage);
+                }
+            });
         } else {
             fastAdapter.clear();
         }
-        for (Shot shot : shots) {
-            ShotItem shotItem = new ShotItem(shot);
-            fastAdapter.add(shotItem);
-        }
+        addRecyclerItems(shots);
         fastAdapter.withOnClickListener((v, adapter, item, position) -> {
             presenter.openShotDetails(item.getModel(), v);
             return false;
@@ -166,7 +177,27 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     }
 
     @Override
+    public void addShots(ArrayList<Shot> shots) {
+        footerAdapter.clear();
+        footerAdapter.add(new ProgressItem().withEnabled(false));
+        addRecyclerItems(shots);
+    }
+
+    @Override
+    public void addMoreShotsError() {
+        Snackbar.make(getActivity().findViewById(R.id.rootLayout),
+                R.string.load_page_error, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
     public void setPresenter(ShotContract.Presenter presenter) {
         this.presenter = presenter;
+    }
+
+    private void addRecyclerItems(ArrayList<Shot> shots) {
+        for (Shot shot : shots) {
+            ShotItem shotItem = new ShotItem(shot);
+            fastAdapter.add(shotItem);
+        }
     }
 }
