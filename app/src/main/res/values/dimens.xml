@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="xxxlarge_padding">64dp</dimen>
+    <dimen name="xxxlarge_padding">48dp</dimen>
     <dimen name="normal_padding">12dp</dimen>
     <dimen name="small_padding">6dp</dimen>
     <dimen name="xsmall_padding">4dp</dimen>

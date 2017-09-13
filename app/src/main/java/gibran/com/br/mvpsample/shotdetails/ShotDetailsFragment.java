@@ -35,6 +35,8 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
     TextView authorView;
     @BindView(R.id.fragment_shot_details_image)
     ImageView imageView;
+    @BindView(R.id.fragment_shot_details_avatar)
+    ImageView avatarView;
     @BindView(R.id.fragment_shot_details_likes)
     TextView likesView;
     @BindView(R.id.fragment_shot_details_buckets_count)
@@ -113,13 +115,18 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
         if (!TextUtils.isEmpty(shot.getImages().getNormal())) {
             Glide.with(getContext())
                     .load(shot.getImages().getNormal())
-                    .placeholder(R.drawable.placeholder)
                     .into(imageView);
         } else {
             Glide.with(getContext())
                     .load(R.drawable.placeholder)
                     .into(imageView);
         }
+        if (!TextUtils.isEmpty(shot.getUser().getAvatarUrl())) {
+            Glide.with(getContext())
+                    .load(shot.getUser().getAvatarUrl())
+                    .into(avatarView);
+        }
+
         //Some Shots don`t have description, so we check if it have one
         if (!TextUtils.isEmpty(shot.getDescription())) {
             descriptionView.setText(Html.fromHtml(shot.getDescription()));
