@@ -36,12 +36,18 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
     CardView cardView;
     @BindView(R.id.fragment_shot_details_title)
     TextView titleView;
+    @BindView(R.id.fragment_shot_details_author)
+    TextView authorView;
     @BindView(R.id.fragment_shot_details_image)
     ImageView imageView;
+    @BindView(R.id.fragment_shot_details_likes)
+    TextView likesView;
+    @BindView(R.id.fragment_shot_details_buckets_count)
+    TextView bucketsCountView;
     @BindView(R.id.fragment_shot_details_description)
     TextView descriptionView;
     @BindView(R.id.fragment_shot_details_views_count)
-    TextView viewsCountView;
+    TextView countsView;
     @BindView(R.id.fragment_shot_details_comments_count)
     TextView commentsCountView;
     @BindView(R.id.fragment_shot_details_created_at)
@@ -124,7 +130,13 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
         if (!TextUtils.isEmpty(shot.getDescription())) {
             descriptionView.setText(Html.fromHtml(shot.getDescription()));
         }
-        viewsCountView.setText(String.format(getResources().getString(R.string.shot_item_view_count_text),
+        authorView.setText(String.format(getResources().getString(R.string.shot_item_view_author_text),
+                String.valueOf(shot.getUser().getName())));
+        likesView.setText(String.format(getResources().getString(R.string.shot_item_view_likes_text),
+                String.valueOf(shot.getBucketsCount())));
+        bucketsCountView.setText(String.format(getResources().getString(R.string.shot_item_view_buckets_text),
+                String.valueOf(shot.getBucketsCount())));
+        countsView.setText(String.format(getResources().getString(R.string.shot_item_view_count_text),
                 String.valueOf(shot.getViewsCount())));
         commentsCountView.setText(String.format(getResources().getString(R.string.shot_item_comments_count),
                 String.valueOf(shot.getCommentsCount())));

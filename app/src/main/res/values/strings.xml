@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MvpSample</string>
 
+    <string name="shot_item_view_author_text">by %1$s</string>
+    <string name="shot_item_view_likes_text">%1$s likes</string>
+    <string name="shot_item_view_buckets_text">%1$s buckets</string>
     <string name="shot_item_view_count_text">%1$s views</string>
     <string name="shot_item_created_at_text">Created at %1$s</string>
     <string name="shot_item_comments_count">%1$s comments</string>

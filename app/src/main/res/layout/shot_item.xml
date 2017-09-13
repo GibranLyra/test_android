@@ -35,7 +35,7 @@
                 android:id="@+id/shot_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/x_small_padding"
+                android:layout_margin="@dimen/xxsmall_padding"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/primary_text"
@@ -46,7 +46,7 @@
                 android:id="@+id/shot_item_view_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/x_small_padding"
+                android:layout_margin="@dimen/xxsmall_padding"
                 android:ellipsize="end"
                 tools:text="Views Count"/>
 
@@ -54,7 +54,7 @@
                 android:id="@+id/shot_image_created_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/x_small_padding"
+                android:layout_margin="@dimen/xxsmall_padding"
                 android:ellipsize="end"
                 tools:text="Created at"/>
         </LinearLayout>
