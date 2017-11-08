@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="gibran.com.br.mvpsample">
 
-    <permission android:name="android.permission.INTERNET"/>
     <permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -27,8 +26,11 @@
         <activity
             android:name=".shotdetails.ShotDetailsActivity"
             android:label="Shot details">
-
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="d406ba7152f8f3c0fe741abee459fff6a7835b1c" />
     </application>
+    <permission android:name="android.permission.INTERNET"/>
 
 </manifest>

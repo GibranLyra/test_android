@@ -4,10 +4,12 @@ import android.app.Application;
 import android.support.multidex.MultiDex;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.crashlytics.android.Crashlytics;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import gibran.com.br.dribbleservice.DribbleApiModule;
 import gibran.com.br.dribbleservice.LoggingInterceptor;
+import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
 /**
@@ -32,6 +34,7 @@ public class AppContext extends Application {
         initializeTimber();
         initializeApiModules();
         initializeGlideRequestOptions();
+        Fabric.with(this, new Crashlytics());
     }
 
     private void initializeTimezone() {
