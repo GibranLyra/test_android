@@ -32,7 +32,7 @@ public class ShotDetailsPresenter implements ShotDetailsContract.Presenter {
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe(shot -> {
-                    view.showShotError();
+                    view.showShot`(shot);
                     view.showLoading(false);
                 }, e -> {
                     Timber.e(e, "loadShot: %s", e.getMessage());
