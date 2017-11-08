@@ -13,6 +13,10 @@ import retrofit2.http.Query;
  */
 
 public interface ShotsService {
+
+    @GET("shots")
+    Observable<ArrayList<Shot>> getShots();
+
     @GET("shots")
     Observable<ArrayList<Shot>> getShots(@Query("page") int page, @Query("per_page") int perPage);
 

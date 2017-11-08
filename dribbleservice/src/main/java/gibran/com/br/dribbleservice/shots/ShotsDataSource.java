@@ -11,5 +11,6 @@ import io.reactivex.Observable;
 
 public interface ShotsDataSource {
     Observable<ArrayList<Shot>> getShots();
+    Observable<ArrayList<Shot>> getShots(int page);
     Observable<Shot> getShot(int id);
 }

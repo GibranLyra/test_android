@@ -21,11 +21,18 @@ public interface ShotContract {
         boolean isActive();
 
         void showShotDetailsUi(Shot shot, @Nullable android.view.View v);
+
+        void addShots(ArrayList<Shot> shots);
+
+        void addMoreShotsError();
     }
 
     interface Presenter extends BaseContractPresenter {
         void loadShots();
 
+        void loadPage(int currentPage);
+
         void openShotDetails(Shot shot, @Nullable android.view.View v);
+
     }
 }

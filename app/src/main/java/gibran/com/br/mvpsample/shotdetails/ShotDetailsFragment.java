@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
-import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -32,14 +31,12 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
     private static final String LOADED_SHOT = "loadedShot";
     @BindView(R.id.fragment_shot_details_progress_bar)
     ContentLoadingProgressBar progressBar;
-    @BindView(R.id.fragment_shot_details_card_view)
-    CardView cardView;
-    @BindView(R.id.fragment_shot_details_title)
-    TextView titleView;
     @BindView(R.id.fragment_shot_details_author)
     TextView authorView;
     @BindView(R.id.fragment_shot_details_image)
     ImageView imageView;
+    @BindView(R.id.fragment_shot_details_avatar)
+    ImageView avatarView;
     @BindView(R.id.fragment_shot_details_likes)
     TextView likesView;
     @BindView(R.id.fragment_shot_details_buckets_count)
@@ -115,17 +112,21 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
     }
 
     private void setupView(Shot shot) {
-        titleView.setText(shot.getTitle());
         if (!TextUtils.isEmpty(shot.getImages().getNormal())) {
             Glide.with(getContext())
                     .load(shot.getImages().getNormal())
-                    .placeholder(R.drawable.placeholder)
                     .into(imageView);
         } else {
             Glide.with(getContext())
                     .load(R.drawable.placeholder)
                     .into(imageView);
         }
+        if (!TextUtils.isEmpty(shot.getUser().getAvatarUrl())) {
+            Glide.with(getContext())
+                    .load(shot.getUser().getAvatarUrl())
+                    .into(avatarView);
+        }
+
         //Some Shots don`t have description, so we check if it have one
         if (!TextUtils.isEmpty(shot.getDescription())) {
             descriptionView.setText(Html.fromHtml(shot.getDescription()));
@@ -155,10 +156,8 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
     public void showLoading(boolean show) {
         if (show) {
             progressBar.setVisibility(View.VISIBLE);
-            cardView.setVisibility(View.GONE);
         } else {
             progressBar.setVisibility(View.GONE);
-            cardView.setVisibility(View.VISIBLE);
         }
     }
 
