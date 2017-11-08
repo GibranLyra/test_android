@@ -15,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gibran.com.br.dribbleservice.model.Shot;
+import gibran.com.br.mvpsample.AppContext;
 import gibran.com.br.mvpsample.R;
 import gibran.com.br.mvpsample.base.BaseRecyclerItem;
 import gibran.com.br.mvpsample.helpers.ActivityHelper;
@@ -52,8 +53,8 @@ public class ShotItem extends BaseRecyclerItem<Shot, ShotItem, ShotItem.ViewHold
         Shot shot = getModel();
         if (shot.getImages() != null && !TextUtils.isEmpty(shot.getImages().getNormal())) {
             Glide.with(context)
+                    .setDefaultRequestOptions(AppContext.getInstance().getGlideRequestOptions())
                     .load(shot.getImages().getNormal())
-                    .placeholder(R.drawable.placeholder)
                     .into(viewHolder.imageView);
         } else {
             Glide.with(context)
@@ -73,7 +74,6 @@ public class ShotItem extends BaseRecyclerItem<Shot, ShotItem, ShotItem.ViewHold
     @Override
     public void unbindView(ViewHolder holder) {
         super.unbindView(holder);
-        Glide.clear(holder.imageView);
         holder.imageView.setImageDrawable(null);
         holder.titleView.setText(null);
         holder.viewCountView.setText(null);

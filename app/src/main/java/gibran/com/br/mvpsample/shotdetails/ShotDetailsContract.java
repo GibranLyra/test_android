@@ -2,11 +2,11 @@ package gibran.com.br.mvpsample.shotdetails;
 
 import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.mvpsample.base.BaseContractPresenter;
-import gibran.com.br.mvpsample.base.BaseView;
+import gibran.com.br.mvpsample.base.BaseContractView;
 
 public interface ShotDetailsContract {
 
-    interface View extends BaseView<Presenter> {
+    interface ContractView extends BaseContractView<Presenter> {
 
         void showShot(Shot shot);
 

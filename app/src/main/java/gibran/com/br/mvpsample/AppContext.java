@@ -3,10 +3,13 @@ package gibran.com.br.mvpsample;
 import android.app.Application;
 import android.support.multidex.MultiDex;
 
+import com.bumptech.glide.request.RequestOptions;
+import com.crashlytics.android.Crashlytics;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import gibran.com.br.dribbleservice.DribbleApiModule;
 import gibran.com.br.dribbleservice.LoggingInterceptor;
+import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
 /**
@@ -16,6 +19,7 @@ import timber.log.Timber;
 public class AppContext extends Application {
 
     private static AppContext instance;
+    private RequestOptions requestOptions;
 
     public static AppContext getInstance() {
         return instance;
@@ -29,6 +33,8 @@ public class AppContext extends Application {
         initializeTimezone();
         initializeTimber();
         initializeApiModules();
+        initializeGlideRequestOptions();
+        Fabric.with(this, new Crashlytics());
     }
 
     private void initializeTimezone() {
@@ -41,8 +47,18 @@ public class AppContext extends Application {
         }
     }
 
-
     private void initializeApiModules() {
         DribbleApiModule.setRetrofit(LoggingInterceptor.Level.HEADERS);
+    }
+
+
+    private void initializeGlideRequestOptions() {
+        requestOptions = new RequestOptions();
+        requestOptions.placeholder(R.drawable.placeholder);
+        requestOptions.error(R.drawable.placeholder);
+    }
+
+    public RequestOptions getGlideRequestOptions() {
+        return requestOptions;
     }
 }

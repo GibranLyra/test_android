@@ -3,7 +3,6 @@ package gibran.com.br.mvpsample.shotdetails;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +13,7 @@ import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.dribbleservice.shots.ShotsApi;
 import gibran.com.br.mvpsample.R;
 import gibran.com.br.mvpsample.helpers.ActivityHelper;
+import gibran.com.br.mvpsample.helpers.schedulers.SchedulerProvider;
 
 /**
  * Created by gibranlyra on 25/08/17.
@@ -21,7 +21,6 @@ import gibran.com.br.mvpsample.helpers.ActivityHelper;
 
 public class ShotDetailsActivity extends AppCompatActivity {
 
-    @Nullable
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -59,7 +58,7 @@ public class ShotDetailsActivity extends AppCompatActivity {
             fragment = ShotDetailsFragment.newInstance(shot);
             ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.view_container);
         }
-        presenter = new ShotDetailsPresenter(ShotsApi.getInstance(), fragment);
+        presenter = new ShotDetailsPresenter(ShotsApi.getInstance(), fragment, SchedulerProvider.getInstance());
     }
 
     @Override

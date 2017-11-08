@@ -3,7 +3,6 @@ package gibran.com.br.mvpsample.shot;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,12 +25,13 @@ import butterknife.Unbinder;
 import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.mvpsample.ActivityRoutes;
 import gibran.com.br.mvpsample.R;
+import gibran.com.br.mvpsample.base.BaseFragment;
 
 /**
  * Created by gibranlyra on 24/08/17.
  */
 
-public class ShotFragment extends Fragment implements ShotContract.View {
+public class ShotFragment extends BaseFragment<ShotContract.Presenter> implements ShotContract.ContractView {
 
     private static final String LOADED_SHOTS = "loadedShots";
     @BindView(R.id.fragment_shot_progress_bar)
@@ -61,7 +61,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shot, container, false);
         unbinder = ButterKnife.bind(this, view);
-        swipeToRefresh.setOnRefreshListener(() -> presenter.loadShots());
+        swipeToRefresh.setOnRefreshListener(() -> reloadFragment());
         swipeToRefresh.setColorSchemeResources(
                 R.color.accent,
                 R.color.colorSecondary,
@@ -130,7 +130,6 @@ public class ShotFragment extends Fragment implements ShotContract.View {
         if (recyclerView.getAdapter() == null) {
             recyclerView.setAdapter(footerAdapter.wrap(fastAdapter));
             recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(footerAdapter) {
-
                 @Override
                 public void onLoadMore(int currentPage) {
                     presenter.loadPage(currentPage);
@@ -151,7 +150,7 @@ public class ShotFragment extends Fragment implements ShotContract.View {
     @Override
     public void showShotsError() {
         swipeToRefresh.setRefreshing(false);
-        Snackbar.make(getActivity().findViewById(R.id.rootLayout), R.string.generic_error, Snackbar.LENGTH_LONG).show();
+        showShotError();
     }
 
     @Override
@@ -164,11 +163,6 @@ public class ShotFragment extends Fragment implements ShotContract.View {
             progressBar.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
         }
-    }
-
-    @Override
-    public boolean isActive() {
-        return isAdded();
     }
 
     @Override
@@ -199,5 +193,10 @@ public class ShotFragment extends Fragment implements ShotContract.View {
             ShotItem shotItem = new ShotItem(shot);
             fastAdapter.add(shotItem);
         }
+    }
+
+    @Override
+    protected void reloadFragment() {
+        presenter.loadShots();
     }
 }

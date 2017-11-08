@@ -16,7 +16,9 @@
 
 package gibran.com.br.mvpsample.base;
 
-public interface BaseView<T> {
+public interface BaseContractView<T> {
+
+    boolean isActive();
 
     void setPresenter(T presenter);
 

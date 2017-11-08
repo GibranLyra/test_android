@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.mvpsample.base.BaseContractPresenter;
-import gibran.com.br.mvpsample.base.BaseView;
+import gibran.com.br.mvpsample.base.BaseContractView;
 
 public interface ShotContract {
 
-    interface View extends BaseView<Presenter> {
+    interface ContractView extends BaseContractView<Presenter> {
 
         void showShots(ArrayList<Shot> shots);
 
