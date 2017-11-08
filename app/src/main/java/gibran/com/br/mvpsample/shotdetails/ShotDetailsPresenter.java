@@ -2,6 +2,7 @@ package gibran.com.br.mvpsample.shotdetails;
 
 import gibran.com.br.dribbleservice.shots.ShotsDataSource;
 import gibran.com.br.mvpsample.helpers.ObserverHelper;
+import gibran.com.br.mvpsample.helpers.schedulers.BaseSchedulerProvider;
 import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
@@ -13,11 +14,14 @@ public class ShotDetailsPresenter implements ShotDetailsContract.Presenter {
 
     private ShotsDataSource shotsRepository;
     private ShotDetailsContract.View view;
+    private BaseSchedulerProvider schedulerProvider;
     private Disposable getShotDisposable;
 
-    public ShotDetailsPresenter(ShotsDataSource shotsRepository, ShotDetailsContract.View view) {
+    public ShotDetailsPresenter(ShotsDataSource shotsRepository, ShotDetailsContract.View view,
+                                BaseSchedulerProvider schedulerProvider) {
         this.shotsRepository = shotsRepository;
         this.view = view;
+        this.schedulerProvider = schedulerProvider;
         this.view.setPresenter(this);
     }
 
@@ -25,7 +29,8 @@ public class ShotDetailsPresenter implements ShotDetailsContract.Presenter {
     public void loadShot(int id) {
         view.showLoading(true);
         getShotDisposable = shotsRepository.getShot(id)
-                .compose(ObserverHelper.getInstance().applySchedulers())
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .subscribe(shot -> {
                     view.showShot(shot);
                     view.showLoading(false);
@@ -43,6 +48,6 @@ public class ShotDetailsPresenter implements ShotDetailsContract.Presenter {
 
     @Override
     public void unsubscribe() {
-        ObserverHelper.getInstance().safelyDispose(getShotDisposable);
+        ObserverHelper.safelyDispose(getShotDisposable);
     }
 }

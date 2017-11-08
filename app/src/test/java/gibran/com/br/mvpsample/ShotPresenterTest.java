@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.dribbleservice.shots.ShotsDataSource;
+import gibran.com.br.mvpsample.helpers.schedulers.ImmediateSchedulerProvider;
 import gibran.com.br.mvpsample.shot.ShotContract;
 import gibran.com.br.mvpsample.shot.ShotPresenter;
 import io.reactivex.Observable;
@@ -35,15 +36,16 @@ public class ShotPresenterTest {
 
     private ShotPresenter shotPresenter;
     private ArrayList<Shot> SHOTS;
+    private ImmediateSchedulerProvider schedulerProvider;
 
     @Before
     public void setupShotPresenter() {
         // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
         // inject the mocks in the test the initMocks method needs to be called.
         MockitoAnnotations.initMocks(this);
-
+        schedulerProvider = new ImmediateSchedulerProvider();
         // Get a reference to the class under test
-        shotPresenter = new ShotPresenter(shotsService, shotsView);
+        shotPresenter = new ShotPresenter(shotsService, shotsView, schedulerProvider);
 
         // The presenter won't update the view unless it's active.
         when(shotsView.isActive()).thenReturn(true);

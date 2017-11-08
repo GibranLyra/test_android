@@ -21,6 +21,7 @@ import gibran.com.br.dribbleservice.shots.ShotsApi;
 import gibran.com.br.mvpsample.R;
 import gibran.com.br.mvpsample.helpers.ActivityHelper;
 import gibran.com.br.mvpsample.helpers.EspressoIdlingResource;
+import gibran.com.br.mvpsample.helpers.schedulers.SchedulerProvider;
 
 public class ShotActivity extends AppCompatActivity {
 
@@ -77,7 +78,7 @@ public class ShotActivity extends AppCompatActivity {
             shotFragment = ShotFragment.newInstance();
             ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), shotFragment, R.id.view_container);
         }
-        presenter = new ShotPresenter(ShotsApi.getInstance(), shotFragment);
+        presenter = new ShotPresenter(ShotsApi.getInstance(), shotFragment, SchedulerProvider.getInstance());
     }
 
     @VisibleForTesting

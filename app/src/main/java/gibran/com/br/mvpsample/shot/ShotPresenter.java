@@ -1,6 +1,5 @@
 package gibran.com.br.mvpsample.shot;
 
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
@@ -8,6 +7,7 @@ import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.dribbleservice.shots.ShotsDataSource;
 import gibran.com.br.mvpsample.helpers.EspressoIdlingResource;
 import gibran.com.br.mvpsample.helpers.ObserverHelper;
+import gibran.com.br.mvpsample.helpers.schedulers.BaseSchedulerProvider;
 import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
@@ -21,13 +21,16 @@ public class ShotPresenter implements ShotContract.Presenter {
 
     private ShotsDataSource shotRepository;
     private ShotContract.View view;
+    private BaseSchedulerProvider schedulerProvider;
     private Disposable getShotsDisposable;
 
 
-    public ShotPresenter(@NonNull ShotsDataSource shotRepository,
-                         @NonNull ShotContract.View view) {
+    public ShotPresenter(ShotsDataSource shotRepository,
+                         ShotContract.View view,
+                         BaseSchedulerProvider schedulerProvider) {
         this.shotRepository = shotRepository;
         this.view = view;
+        this.schedulerProvider = schedulerProvider;
         this.view.setPresenter(this);
     }
 
@@ -38,7 +41,7 @@ public class ShotPresenter implements ShotContract.Presenter {
 
     @Override
     public void unsubscribe() {
-        ObserverHelper.getInstance().safelyDispose(getShotsDisposable);
+        ObserverHelper.safelyDispose(getShotsDisposable);
     }
 
 
@@ -49,7 +52,8 @@ public class ShotPresenter implements ShotContract.Presenter {
         // that the app is busy until the response is handled.
         EspressoIdlingResource.increment(); // App is busy until further notice
         getShotsDisposable = shotRepository.getShots(0)
-                .compose(ObserverHelper.getInstance().applySchedulers())
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .doOnTerminate(() -> {
                     if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
                         EspressoIdlingResource.decrement(); // Set app as idle.
@@ -71,9 +75,9 @@ public class ShotPresenter implements ShotContract.Presenter {
     @Override
     public void loadPage(int currentPage) {
         getShotsDisposable = shotRepository.getShots(currentPage)
-                .compose(ObserverHelper.getInstance().applySchedulers())
-                .subscribe(
-                        shots -> view.addShots(shots),
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
+                .subscribe(shots -> view.addShots(shots),
                         __ -> view.addMoreShotsError());
 
     }

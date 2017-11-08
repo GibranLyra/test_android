@@ -14,6 +14,7 @@ import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.dribbleservice.shots.ShotsApi;
 import gibran.com.br.mvpsample.R;
 import gibran.com.br.mvpsample.helpers.ActivityHelper;
+import gibran.com.br.mvpsample.helpers.schedulers.SchedulerProvider;
 
 /**
  * Created by gibranlyra on 25/08/17.
@@ -59,7 +60,7 @@ public class ShotDetailsActivity extends AppCompatActivity {
             fragment = ShotDetailsFragment.newInstance(shot);
             ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.view_container);
         }
-        presenter = new ShotDetailsPresenter(ShotsApi.getInstance(), fragment);
+        presenter = new ShotDetailsPresenter(ShotsApi.getInstance(), fragment, SchedulerProvider.getInstance());
     }
 
     @Override
