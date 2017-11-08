@@ -113,18 +113,15 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
         if (!TextUtils.isEmpty(shot.getImages().getNormal())) {
             Glide.with(getContext())
                     .load(shot.getImages().getNormal())
-                    .fitCenter()
                     .into(imageView);
         } else {
             Glide.with(getContext())
                     .load(R.drawable.placeholder)
-                    .fitCenter()
                     .into(imageView);
         }
         if (!TextUtils.isEmpty(shot.getUser().getAvatarUrl())) {
             Glide.with(getContext())
                     .load(shot.getUser().getAvatarUrl())
-                    .fitCenter()
                     .into(avatarView);
         }
 

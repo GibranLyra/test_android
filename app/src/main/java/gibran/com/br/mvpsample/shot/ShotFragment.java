@@ -130,7 +130,6 @@ public class ShotFragment extends Fragment implements ShotContract.View {
         if (recyclerView.getAdapter() == null) {
             recyclerView.setAdapter(footerAdapter.wrap(fastAdapter));
             recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(footerAdapter) {
-
                 @Override
                 public void onLoadMore(int currentPage) {
                     presenter.loadPage(currentPage);
