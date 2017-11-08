@@ -32,7 +32,7 @@ public class ShotPresenterTest {
     private ShotsDataSource shotsService;
 
     @Mock
-    private ShotContract.View shotsView;
+    private ShotContract.ContractView shotsView;
 
     private ShotPresenter shotPresenter;
     private ArrayList<Shot> SHOTS;

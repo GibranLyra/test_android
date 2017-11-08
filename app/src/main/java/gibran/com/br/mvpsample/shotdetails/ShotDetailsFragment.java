@@ -2,8 +2,6 @@ package gibran.com.br.mvpsample.shotdetails;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.text.Html;
 import android.text.TextUtils;
@@ -20,13 +18,15 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import gibran.com.br.dribbleservice.model.Shot;
 import gibran.com.br.mvpsample.R;
+import gibran.com.br.mvpsample.base.BaseFragment;
 import gibran.com.br.mvpsample.helpers.ActivityHelper;
 
 /**
  * Created by gibranlyra on 25/08/17.
  */
 
-public class ShotDetailsFragment extends Fragment implements ShotDetailsContract.View {
+public class ShotDetailsFragment extends BaseFragment<ShotDetailsContract.Presenter>
+        implements ShotDetailsContract.ContractView {
 
     private static final String LOADED_SHOT = "loadedShot";
     @BindView(R.id.fragment_shot_details_progress_bar)
@@ -142,11 +142,6 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
                 createdAt));
     }
 
-    @Override
-    public void showShotError() {
-        Snackbar.make(getActivity().findViewById(R.id.rootLayout), R.string.generic_error, Snackbar.LENGTH_LONG).show();
-    }
-
 
     @Override
     public void showLoading(boolean show) {
@@ -155,6 +150,11 @@ public class ShotDetailsFragment extends Fragment implements ShotDetailsContract
         } else {
             progressBar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void reloadFragment() {
+        presenter.loadShot(getShotFromBundle().getId());
     }
 
     @Override

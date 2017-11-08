@@ -13,11 +13,11 @@ import timber.log.Timber;
 public class ShotDetailsPresenter implements ShotDetailsContract.Presenter {
 
     private ShotsDataSource shotsRepository;
-    private ShotDetailsContract.View view;
+    private ShotDetailsContract.ContractView view;
     private BaseSchedulerProvider schedulerProvider;
     private Disposable getShotDisposable;
 
-    public ShotDetailsPresenter(ShotsDataSource shotsRepository, ShotDetailsContract.View view,
+    public ShotDetailsPresenter(ShotsDataSource shotsRepository, ShotDetailsContract.ContractView view,
                                 BaseSchedulerProvider schedulerProvider) {
         this.shotsRepository = shotsRepository;
         this.view = view;
@@ -32,7 +32,7 @@ public class ShotDetailsPresenter implements ShotDetailsContract.Presenter {
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe(shot -> {
-                    view.showShot(shot);
+                    view.showShotError();
                     view.showLoading(false);
                 }, e -> {
                     Timber.e(e, "loadShot: %s", e.getMessage());

@@ -11,4 +11,5 @@
     <string name="load_page_error">Ocorreu um erro ao tentar carregar a página.</string>
     <string name="shot_item_image_description">Shot image</string>
     <string name="shot_details_image_description">Shot image</string>
+    <string name="snackbar_try_again">Tentar Novamente</string>
 </resources>

@@ -20,13 +20,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ShotPresenter implements ShotContract.Presenter {
 
     private ShotsDataSource shotRepository;
-    private ShotContract.View view;
+    private ShotContract.ContractView view;
     private BaseSchedulerProvider schedulerProvider;
     private Disposable getShotsDisposable;
 
 
     public ShotPresenter(ShotsDataSource shotRepository,
-                         ShotContract.View view,
+                         ShotContract.ContractView view,
                          BaseSchedulerProvider schedulerProvider) {
         this.shotRepository = shotRepository;
         this.view = view;

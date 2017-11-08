@@ -25,7 +25,7 @@ public class ShotDetailsPresenterTest {
     private ShotsDataSource shotsService;
 
     @Mock
-    ShotDetailsContract.View shotDetailsView;
+    ShotDetailsContract.ContractView shotDetailsView;
 
     private ShotDetailsPresenter shotDetailsPresenter;
     private ImmediateSchedulerProvider schedulerProvider;
