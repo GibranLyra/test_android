@@ -3,7 +3,6 @@ package gibran.com.br.mvpsample.shotdetails;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,7 +21,6 @@ import gibran.com.br.mvpsample.helpers.schedulers.SchedulerProvider;
 
 public class ShotDetailsActivity extends AppCompatActivity {
 
-    @Nullable
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
