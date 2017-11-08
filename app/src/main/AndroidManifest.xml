@@ -27,9 +27,10 @@
             android:name=".shotdetails.ShotDetailsActivity"
             android:label="Shot details">
         </activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="d406ba7152f8f3c0fe741abee459fff6a7835b1c" />
+            android:value="d406ba7152f8f3c0fe741abee459fff6a7835b1c"/>
     </application>
     <permission android:name="android.permission.INTERNET"/>
 
