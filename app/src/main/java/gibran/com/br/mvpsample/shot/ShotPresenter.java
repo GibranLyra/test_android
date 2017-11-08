@@ -59,8 +59,7 @@ public class ShotPresenter implements ShotContract.Presenter {
                         EspressoIdlingResource.decrement(); // Set app as idle.
                     }
                 })
-                .subscribe(
-                        shots -> {
+                .subscribe(shots -> {
                             view.showLoading(false);
                             view.showShots(shots);
                         },

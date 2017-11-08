@@ -47,7 +47,7 @@ public class DribbleApiModule {
                 .build();
     }
 
-    private static Gson getDefaultGsonBuilder() {
+    public static Gson getDefaultGsonBuilder() {
         return new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                 .create();

@@ -14,6 +14,7 @@ public class ShotDetailsPresenter implements ShotDetailsContract.Presenter {
 
     private ShotsDataSource shotsRepository;
     private ShotDetailsContract.ContractView view;
+    private ShotDetailsContract.Presenter presenterContract;
     private BaseSchedulerProvider schedulerProvider;
     private Disposable getShotDisposable;
 
