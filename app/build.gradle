@@ -1,26 +1,18 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 buildscript {
     repositories {
-        mavenCentral()
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
     }
-
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
-    }
 }
 
-// Required because retrolambda is on maven central
 repositories {
-    mavenCentral()
     maven { url 'https://maven.fabric.io/public' }
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "gibran.com.br.mvpsample"
@@ -67,7 +59,7 @@ android {
 }
 
 ext {
-    supportVersion = '25.4.0'
+    supportVersion = '27.0.0'
 }
 
 dependencies {
@@ -125,28 +117,4 @@ dependencies {
     compile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.ext.espressoVersion"
     //MultiDex
     compile 'com.android.support:multidex:1.0.1'
-}
-
-String java7 = getJavaVersion(7)
-String java8 = getJavaVersion(8)
-
-retrolambda {
-    jdk java8
-    oldJdk java7
-    javaVersion JavaVersion.VERSION_1_7
-    defaultMethods false
-    incremental true
-}
-
-String getJavaVersion(Integer v) {
-    def envVar = v == 7 ? System.getenv("JAVA_HOME") : System.getenv("JAVA8_HOME")
-    if (envVar != null && envVar.trim() != "") {
-        return envVar
-    }
-    def sout = new StringBuffer()
-    def proc = "/usr/libexec/java_home -v 1.$v".execute()
-    proc.consumeProcessOutput(sout, new StringBuffer())
-    proc.waitForOrKill(1000)
-    def javaHome = sout.toString().replace("\n", "").replace("\r", "")
-    return javaHome
 }
