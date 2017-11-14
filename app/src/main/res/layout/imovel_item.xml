@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/imovel_item_card_view"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="312dp"
     android:clipToPadding="false"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@drawable/gradient_horizontal"
             android:orientation="vertical">
 
             <TextView
@@ -38,6 +39,8 @@
                 android:paddingEnd="@dimen/normal_padding"
                 android:paddingStart="@dimen/normal_padding"
                 android:paddingTop="@dimen/normal_padding"
+                android:textColor="@color/primary_text_white"
+                android:textSize="@dimen/text_size_normal"
                 tools:text="Tipo do imóvel"/>
 
             <LinearLayout
@@ -56,8 +59,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/xxsmall_padding"
-                    android:textColor="@color/primary_text"
-                    android:textSize="18sp"
+                    android:textColor="@color/primary_text_white"
+                    android:textSize="@dimen/text_size_normal"
                     tools:text="Price"/>
 
                 <TextView
@@ -67,17 +70,39 @@
                     android:layout_margin="@dimen/xxsmall_padding"
                     android:ellipsize="end"
                     android:maxLines="2"
+                    android:textColor="@color/secondary_text_white"
+                    android:textSize="@dimen/text_size_small"
                     tools:text="Endereco"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/normal_padding"
+                android:paddingEnd="@dimen/normal_padding"
+                android:paddingStart="@dimen/normal_padding"
+                android:paddingTop="@dimen/small_padding">
 
                 <TextView
-                    android:id="@+id/imovel_image_information"
+                    android:id="@+id/imovel_image_total_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/xxsmall_padding"
-                    android:ellipsize="end"
-                    tools:text="Informacoes"/>
-            </LinearLayout>
+                    android:textColor="@color/primary_text_white"
+                    tools:text="90 m2"/>
 
+                <TextView
+                    android:id="@+id/imovel_image_dorms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/xxsmall_padding"
+                    android:textColor="@color/primary_text_white"
+                    tools:text="2 Dorms"/>
+
+            </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 </android.support.v7.widget.CardView>

@@ -114,8 +114,11 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
                     .into(imageView);
         }
         typeView.setText(imovel.getTipoImovel());
-        salePrice.setText(String.valueOf(imovel.getPrecoVenda()));
-        addressView.setText(imovel.getEndereco().getCidade());
+        salePrice.setText(getContext().getResources().getString(R.string.imovel_price,
+                String.valueOf(imovel.getPrecoVenda())));
+        addressView.setText(getContext().getResources().getString(R.string.imovel_address,
+                imovel.getEndereco().getBairro(),
+                imovel.getEndereco().getCidade()));
         descriptionView.setText(imovel.getObservacao());
     }
 

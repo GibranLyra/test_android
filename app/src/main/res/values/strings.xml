@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">Zap Imóveis</string>
 
-    <string name="imovel_item_view_author_text">by %1$s</string>
-    <string name="imovel_item_view_likes_text">%1$s likes</string>
-    <string name="imovel_item_view_buckets_text">%1$s buckets</string>
-    <string name="imovel_item_view_count_text">%1$s views</string>
-    <string name="imovel_item_created_at_text">Created at %1$s</string>
-    <string name="imovel_item_comments_count">%1$s comments</string>
+    <string name="imovel_price">R$%1$s,00</string>
+    <string name="imovel_address">%1$s • %2$s</string>
+    <string name="imovel_total_area">%1$s m2</string>
+    <string name="imovel_dorms">%1$s Dorms.</string>
     <string name="generic_error">Ocorreu um erro.</string>
     <string name="load_page_error">Ocorreu um erro ao tentar carregar a página.</string>
     <string name="imovel_item_image_description">Imovel image</string>

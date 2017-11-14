@@ -59,9 +59,15 @@ public class ImovelItem extends BaseRecyclerItem<Imovel, ImovelItem, ImovelItem.
                     .load(R.drawable.placeholder)
                     .into(viewHolder.imageView);
         }
-        viewHolder.priceView.setText(String.valueOf(getModel().getPrecoVenda()));
-        viewHolder.addressView.setText(getModel().getEndereco().getCidade());
-        viewHolder.informationView.setText(String.valueOf(getModel().getAreaTotal()));
+        viewHolder.priceView.setText(context.getResources().getString(R.string.imovel_price,
+                String.valueOf(getModel().getPrecoVenda())));
+        viewHolder.addressView.setText(context.getResources().getString(R.string.imovel_address,
+                getModel().getEndereco().getBairro(),
+                getModel().getEndereco().getCidade()));
+        viewHolder.totalArea.setText(context.getResources().getString(R.string.imovel_total_area,
+                String.valueOf(getModel().getAreaTotal())));
+        viewHolder.dormsView.setText(context.getResources().getString(R.string.imovel_dorms,
+                String.valueOf(getModel().getDataAtualizacao())));
     }
 
     //reset the view here for better performance
@@ -71,7 +77,8 @@ public class ImovelItem extends BaseRecyclerItem<Imovel, ImovelItem, ImovelItem.
         holder.imageView.setImageDrawable(null);
         holder.priceView.setText(null);
         holder.addressView.setText(null);
-        holder.informationView.setText(null);
+        holder.totalArea.setText(null);
+        holder.dormsView.setText(null);
     }
 
     //Init the viewHolder for this Item
@@ -88,8 +95,10 @@ public class ImovelItem extends BaseRecyclerItem<Imovel, ImovelItem, ImovelItem.
         TextView priceView;
         @BindView(R.id.imovel_item_view_address)
         TextView addressView;
-        @BindView(R.id.imovel_image_information)
-        TextView informationView;
+        @BindView(R.id.imovel_image_total_area)
+        TextView totalArea;
+        @BindView(R.id.imovel_image_dorms)
+        TextView dormsView;
 
         public ViewHolder(View view) {
             super(view);
