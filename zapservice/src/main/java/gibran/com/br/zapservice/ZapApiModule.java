@@ -9,6 +9,7 @@ import org.threeten.bp.Clock;
 
 import io.reactivex.annotations.Nullable;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -30,6 +31,11 @@ public class ZapApiModule {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(interceptor);
         builder.addInterceptor(chain -> chain.proceed(chain.request()));
+        builder.addNetworkInterceptor(chain -> {
+            Request.Builder requestBuilder = chain.request().newBuilder();
+            requestBuilder.header("Content-Type", "application/json");
+            return chain.proceed(requestBuilder.build());
+        });
         OkHttpClient okClient = builder.build();
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

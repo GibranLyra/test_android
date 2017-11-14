@@ -49,7 +49,6 @@ public class ImovelApi implements ImovelDataSource {
     @Override
     public Observable<Object> postMessage(Cliente cliente) {
         return imovelService.postContato(cliente)
-                .doOnError(e -> Timber.e(e, "postMessage: %s", e.getMessage()))
-                .map(imovelBaseZapApiResponse -> imovelBaseZapApiResponse.getData());
+                .doOnError(e -> Timber.e(e, "postMessage: %s", e.getMessage()));
     }
 }

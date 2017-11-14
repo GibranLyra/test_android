@@ -7,6 +7,7 @@ public class Cliente implements Parcelable {
     private String nomeFantasia;
     private int codCliente;
     private String telefone;
+    private String email;
 
     public String getNomeFantasia() {
         return nomeFantasia;
@@ -32,6 +33,14 @@ public class Cliente implements Parcelable {
         this.telefone = telefone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Cliente() {
     }
 
@@ -45,12 +54,14 @@ public class Cliente implements Parcelable {
         dest.writeString(this.nomeFantasia);
         dest.writeInt(this.codCliente);
         dest.writeString(this.telefone);
+        dest.writeString(this.email);
     }
 
     protected Cliente(Parcel in) {
         this.nomeFantasia = in.readString();
         this.codCliente = in.readInt();
         this.telefone = in.readString();
+        this.email = in.readString();
     }
 
     public static final Creator<Cliente> CREATOR = new Creator<Cliente>() {

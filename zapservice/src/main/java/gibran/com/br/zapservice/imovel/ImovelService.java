@@ -25,6 +25,6 @@ public interface ImovelService {
     Observable<BaseZapApiResponse<Imovel>> getImovel(@Path("imovelId") int imovelId);
 
     @POST("imoveis/contato")
-    Observable<BaseZapApiResponse<Object>> postContato(@Body Cliente cliente);
+    Observable<Object> postContato(@Body Cliente cliente);
 
 }
