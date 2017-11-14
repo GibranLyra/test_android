@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
-import gibran.com.br.dribbleservice.model.Shot;
-import gibran.com.br.zaptest.shotdetails.ShotDetailsActivity;
+import gibran.com.br.zapservice.model.Imovel;
+import gibran.com.br.zaptest.imoveldetails.ImovelDetailsActivity;
 
 /**
  * Created by gibranlyra on 25/08/17.
@@ -25,15 +25,14 @@ public class ActivityRoutes {
         return instance;
     }
 
-    public void openShotDetailsActivity(Context context, Shot shot, @Nullable View transitionView) {
-        Intent intent = ShotDetailsActivity.createIntent(context, shot);
+    public void openImovelDetailsActivity(Context context, Imovel imovel, @Nullable View transitionView) {
+        Intent intent = ImovelDetailsActivity.createIntent(context, imovel);
         if (transitionView != null) {
             ActivityOptionsCompat options = ActivityOptionsCompat.
-                    makeSceneTransitionAnimation((Activity) context, transitionView, "shot_image_transition");
+                    makeSceneTransitionAnimation((Activity) context, transitionView, "imovel_image_transition");
             context.startActivity(intent, options.toBundle());
         } else {
             context.startActivity(intent);
         }
     }
-
 }

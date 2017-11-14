@@ -7,8 +7,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.crashlytics.android.Crashlytics;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
-import gibran.com.br.dribbleservice.DribbleApiModule;
-import gibran.com.br.dribbleservice.LoggingInterceptor;
+import gibran.com.br.zapservice.ZapApiModule;
+import gibran.com.br.zapservice.LoggingInterceptor;
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
@@ -48,7 +48,7 @@ public class AppContext extends Application {
     }
 
     private void initializeApiModules() {
-        DribbleApiModule.setRetrofit(LoggingInterceptor.Level.HEADERS);
+        ZapApiModule.setRetrofit(LoggingInterceptor.Level.HEADERS);
     }
 
 

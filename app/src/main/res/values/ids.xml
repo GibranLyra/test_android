@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="shot_item_id" type="id">101</item>
+    <item name="imovel_item_id" type="id">101</item>
 </resources>

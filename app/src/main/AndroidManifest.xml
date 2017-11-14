@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name="gibran.com.br.zaptest.shot.ShotActivity"
+            android:name="gibran.com.br.zaptest.imovel.ImovelActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,8 +24,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="gibran.com.br.zaptest.shotdetails.ShotDetailsActivity"
-            android:label="Shot details">
+            android:name="gibran.com.br.zaptest.imoveldetails.ImovelDetailsActivity"
+            android:label="Imovel details">
         </activity>
 
         <meta-data

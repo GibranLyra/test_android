@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/shot_item_card_view"
+    android:id="@+id/imovel_item_card_view"
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:clipToPadding="false"
@@ -18,11 +18,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/shot_item_image"
+            android:id="@+id/imovel_item_image"
             android:layout_width="160dp"
             android:layout_height="match_parent"
-            android:contentDescription="@string/shot_item_image_description"
-            android:transitionName="shot_image_transition"
+            android:contentDescription="@string/imovel_item_image_description"
+            android:transitionName="imovel_image_transition"
             tools:src="@drawable/placeholder"/>
 
         <LinearLayout
@@ -32,7 +32,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/shot_item_title"
+                android:id="@+id/imovel_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/xxsmall_padding"
@@ -40,10 +40,10 @@
                 android:maxLines="2"
                 android:textColor="@color/primary_text"
                 android:textSize="18sp"
-                tools:text="Shot Title"/>
+                tools:text="Imovel Title"/>
 
             <TextView
-                android:id="@+id/shot_item_view_count"
+                android:id="@+id/imovel_item_view_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/xxsmall_padding"
@@ -51,7 +51,7 @@
                 tools:text="Views Count"/>
 
             <TextView
-                android:id="@+id/shot_image_created_at"
+                android:id="@+id/imovel_image_created_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/xxsmall_padding"
