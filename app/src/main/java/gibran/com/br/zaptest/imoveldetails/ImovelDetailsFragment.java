@@ -74,6 +74,19 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
         }
         return view;
     }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.subscribe();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.unsubscribe();
+    }
+
 
     @Override
     public void onDestroy() {

@@ -22,9 +22,6 @@ public interface ImovelContract {
 
         void showImovelDetailsUi(Imovel imovel, @Nullable android.view.View v);
 
-        void addImoveis(ArrayList<Imovel> imovels);
-
-        void addMoreImovelsError();
     }
 
     interface Presenter extends BaseContractPresenter {

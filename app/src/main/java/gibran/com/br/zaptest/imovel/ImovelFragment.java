@@ -2,7 +2,6 @@ package gibran.com.br.zaptest.imovel;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -154,17 +153,6 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
     @Override
     public void showImovelDetailsUi(Imovel imovel, @Nullable View v) {
         ActivityRoutes.getInstance().openImovelDetailsActivity(getContext(), imovel, v);
-    }
-
-    @Override
-    public void addImoveis(ArrayList<Imovel> imoveis) {
-        addRecyclerItems(imoveis);
-    }
-
-    @Override
-    public void addMoreImovelsError() {
-        Snackbar.make(getActivity().findViewById(R.id.rootLayout),
-                R.string.load_page_error, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
