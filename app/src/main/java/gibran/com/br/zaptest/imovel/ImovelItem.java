@@ -67,7 +67,7 @@ public class ImovelItem extends BaseRecyclerItem<Imovel, ImovelItem, ImovelItem.
         viewHolder.totalArea.setText(context.getResources().getString(R.string.imovel_total_area,
                 String.valueOf(getModel().getAreaTotal())));
         viewHolder.dormsView.setText(context.getResources().getString(R.string.imovel_dorms,
-                String.valueOf(getModel().getDataAtualizacao())));
+                String.valueOf(getModel().getDormitorios())));
     }
 
     //reset the view here for better performance
