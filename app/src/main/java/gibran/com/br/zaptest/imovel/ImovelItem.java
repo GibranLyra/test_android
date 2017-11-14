@@ -2,15 +2,19 @@ package gibran.com.br.zaptest.imovel;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gibran.com.br.zapservice.model.Imovel;
+import gibran.com.br.zaptest.AppContext;
 import gibran.com.br.zaptest.R;
 import gibran.com.br.zaptest.base.BaseRecyclerItem;
 
@@ -33,7 +37,7 @@ public class ImovelItem extends BaseRecyclerItem<Imovel, ImovelItem, ImovelItem.
     //The layout to be used for this type of item
     @Override
     public int getLayoutRes() {
-        return R.layout.shot_item;
+        return R.layout.imovel_item;
     }
 
     //The logic to bind your data to the view
@@ -45,22 +49,24 @@ public class ImovelItem extends BaseRecyclerItem<Imovel, ImovelItem, ImovelItem.
         //bind our data
         Context context = viewHolder.itemView.getContext();
         Imovel imovel = getModel();
-//        if (imovel.getImages() != null && !TextUtils.isEmpty(imovel.getImages().getNormal())) {
-//            Glide.with(context)
-//                    .setDefaultRequestOptions(AppContext.getInstance().getGlideRequestOptions())
-//                    .load(imovel.getImages().getNormal())
-//                    .into(viewHolder.imageView);
-//        } else {
-//            Glide.with(context)
-//                    .load(R.drawable.placeholder)
-//                    .into(viewHolder.imageView);
-//        }
-//        viewHolder.titleView.setText(getModel().getTitle());
+        if (!TextUtils.isEmpty(imovel.getUrlImagem())) {
+            Glide.with(context)
+                    .setDefaultRequestOptions(AppContext.getInstance().getGlideRequestOptions())
+                    .load(imovel.getUrlImagem())
+                    .into(viewHolder.imageView);
+        } else {
+            Glide.with(context)
+                    .load(R.drawable.placeholder)
+                    .into(viewHolder.imageView);
+        }
+        viewHolder.priceView.setText(String.valueOf(getModel().getPrecoVenda()));
+        viewHolder.addressView.setText(getModel().getEndereco().getCidade());
+        viewHolder.informationView.setText(String.valueOf(getModel().getAreaTotal()));
 //        Resources resources = context.getResources();
-//        viewHolder.viewCountView.setText(String.format(resources.getString(R.string.imovel_item_view_count_text),
+//        viewHolder.addressView.setText(String.format(resources.getString(R.string.imovel_item_view_count_text),
 //                String.valueOf(getModel().getViewsCount())));
 //        String createdAt = ActivityHelper.getFormatedDate(getModel().getCreatedAt());
-//        viewHolder.createdAtView.setText(String.format(resources.getString(R.string.imovel_item_created_at_text),
+//        viewHolder.informationView.setText(String.format(resources.getString(R.string.imovel_item_created_at_text),
 //                createdAt));
     }
 
@@ -69,9 +75,9 @@ public class ImovelItem extends BaseRecyclerItem<Imovel, ImovelItem, ImovelItem.
     public void unbindView(ViewHolder holder) {
         super.unbindView(holder);
         holder.imageView.setImageDrawable(null);
-        holder.titleView.setText(null);
-        holder.viewCountView.setText(null);
-        holder.createdAtView.setText(null);
+        holder.priceView.setText(null);
+        holder.addressView.setText(null);
+        holder.informationView.setText(null);
     }
 
     //Init the viewHolder for this Item
@@ -84,12 +90,12 @@ public class ImovelItem extends BaseRecyclerItem<Imovel, ImovelItem, ImovelItem.
     protected static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.imovel_item_image)
         ImageView imageView;
-        @BindView(R.id.imovel_item_title)
-        TextView titleView;
-        @BindView(R.id.imovel_item_view_count)
-        TextView viewCountView;
-        @BindView(R.id.imovel_image_created_at)
-        TextView createdAtView;
+        @BindView(R.id.imovel_item_price)
+        TextView priceView;
+        @BindView(R.id.imovel_item_view_address)
+        TextView addressView;
+        @BindView(R.id.imovel_image_information)
+        TextView informationView;
 
         public ViewHolder(View view) {
             super(view);

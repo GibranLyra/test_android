@@ -89,7 +89,7 @@ public class ImovelPresenterTest {
         verify(contractView).showLoading(true);
         verify(contractView).showLoading(false);
         verify(contractView).showImovelsError();
-        verify(contractView, never()).showImovels(any(ArrayList.class));
+        verify(contractView, never()).showImoveis(any(ArrayList.class));
     }
 
     @Test

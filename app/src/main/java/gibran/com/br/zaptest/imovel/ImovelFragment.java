@@ -12,9 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.mikepenz.fastadapter.adapters.FooterAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
-import com.mikepenz.fastadapter_extensions.items.ProgressItem;
 
 import java.util.ArrayList;
 
@@ -32,7 +30,7 @@ import gibran.com.br.zaptest.base.BaseFragment;
 
 public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> implements ImovelContract.ContractView {
 
-    private static final String LOADED_IMOVELS = "loadedImovels";
+    private static final String LOADED_IMOVEIS = "loadedImoveis";
     @BindView(R.id.fragment_imovel_progress_bar)
     protected ProgressBar progressBar;
     @BindView(R.id.fragment_imovel_recycler)
@@ -43,7 +41,6 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
     private Unbinder unbinder;
     private ImovelContract.Presenter presenter;
     private FastItemAdapter<ImovelItem> fastAdapter;
-    private FooterAdapter<ProgressItem> footerAdapter;
     protected boolean isViewLoaded;
     @Nullable
     private Bundle savedInstanceState;
@@ -58,7 +55,7 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_shot, container, false);
+        View view = inflater.inflate(R.layout.fragment_imovel, container, false);
         unbinder = ButterKnife.bind(this, view);
         swipeToRefresh.setOnRefreshListener(() -> reloadFragment());
         swipeToRefresh.setColorSchemeResources(
@@ -75,13 +72,13 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
         if (savedInstanceState == null) {
             presenter.loadImoveis();
         } else {
-            imovels = savedInstanceState.getParcelableArrayList(LOADED_IMOVELS);
+            imovels = savedInstanceState.getParcelableArrayList(LOADED_IMOVEIS);
             if (imovels == null) {
                 //If we are restoring the state but dont have imovels, we load it.
                 presenter.loadImoveis();
             } else {
                 //If we already have the imovels we simply add them to the list
-                showImovels(imovels);
+                showImoveis(imovels);
                 showLoading(false);
             }
         }
@@ -111,19 +108,23 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
             //add the values which need to be saved from the adapter to the bundle
             outState = fastAdapter.saveInstanceState(outState);
         }
-        outState.putParcelableArrayList(LOADED_IMOVELS, imovels);
+        outState.putParcelableArrayList(LOADED_IMOVEIS, imovels);
         super.onSaveInstanceState(outState);
     }
 
     @Override
-    public void showImovels(ArrayList<Imovel> imoveis) {
+    public void showImoveis(ArrayList<Imovel> imoveis) {
         swipeToRefresh.setRefreshing(false);
         this.imovels = imoveis;
         fastAdapter = new FastItemAdapter<>();
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        if (recyclerView.getAdapter() == null) {
+            recyclerView.setAdapter(fastAdapter);
+        } else {
+            fastAdapter.clear();
+        }
         addRecyclerItems(imoveis);
         fastAdapter.withOnClickListener((v, adapter, item, position) -> {
             presenter.openImovelDetails(item.getModel(), v);
@@ -156,10 +157,8 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
     }
 
     @Override
-    public void addImovels(ArrayList<Imovel> imovels) {
-        footerAdapter.clear();
-        footerAdapter.add(new ProgressItem().withEnabled(false));
-        addRecyclerItems(imovels);
+    public void addImoveis(ArrayList<Imovel> imoveis) {
+        addRecyclerItems(imoveis);
     }
 
     @Override
@@ -173,8 +172,8 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
         this.presenter = presenter;
     }
 
-    private void addRecyclerItems(ArrayList<Imovel> imovels) {
-        for (Imovel imovel : imovels) {
+    private void addRecyclerItems(ArrayList<Imovel> imoveis) {
+        for (Imovel imovel : imoveis) {
             ImovelItem imovelItem = new ImovelItem(imovel);
             fastAdapter.add(imovelItem);
         }

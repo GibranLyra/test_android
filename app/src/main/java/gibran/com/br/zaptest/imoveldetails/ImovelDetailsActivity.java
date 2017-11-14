@@ -37,7 +37,7 @@ public class ImovelDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shot_details);
+        setContentView(R.layout.activity_imovel_details);
         ButterKnife.bind(this);
 
         Bundle data = getIntent().getExtras();

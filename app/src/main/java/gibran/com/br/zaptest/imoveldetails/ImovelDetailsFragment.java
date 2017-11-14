@@ -58,7 +58,7 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_shot_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_imovel_details, container, false);
         unbinder = ButterKnife.bind(this, view);
         if (savedInstanceState == null) {
             presenter.loadImovel(getImovelFromBundle().getCodImovel());

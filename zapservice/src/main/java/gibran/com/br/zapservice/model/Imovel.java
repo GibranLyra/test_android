@@ -25,6 +25,7 @@ public class Imovel implements Parcelable {
     private Cliente cliente;
     private ArrayList<String> caracteristicasComum;
     private int suites;
+    private String urlImagem;
 
     public String getDataAtualizacao() {
         return dataAtualizacao;
@@ -178,6 +179,17 @@ public class Imovel implements Parcelable {
         this.suites = suites;
     }
 
+    public String getUrlImagem() {
+        return urlImagem;
+    }
+
+    public void setUrlImagem(String urlImagem) {
+        this.urlImagem = urlImagem;
+    }
+
+    public Imovel() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -204,9 +216,7 @@ public class Imovel implements Parcelable {
         dest.writeParcelable(this.cliente, flags);
         dest.writeStringList(this.caracteristicasComum);
         dest.writeInt(this.suites);
-    }
-
-    public Imovel() {
+        dest.writeString(this.urlImagem);
     }
 
     protected Imovel(Parcel in) {
@@ -229,6 +239,7 @@ public class Imovel implements Parcelable {
         this.cliente = in.readParcelable(Cliente.class.getClassLoader());
         this.caracteristicasComum = in.createStringArrayList();
         this.suites = in.readInt();
+        this.urlImagem = in.readString();
     }
 
     public static final Creator<Imovel> CREATOR = new Creator<Imovel>() {

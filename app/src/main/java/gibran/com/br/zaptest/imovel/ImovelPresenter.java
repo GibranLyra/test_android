@@ -59,9 +59,9 @@ public class ImovelPresenter implements ImovelContract.Presenter {
                         EspressoIdlingResource.decrement(); // Set app as idle.
                     }
                 })
-                .subscribe(imovels -> {
+                .subscribe(imoveis -> {
                             view.showLoading(false);
-                            view.showImovels(imovels);
+                            view.showImoveis(imoveis);
                         },
                         e -> {
                             Timber.e(e, "loadImoveis: %s", e.getMessage());

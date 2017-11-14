@@ -12,7 +12,7 @@ public interface ImovelContract {
 
     interface ContractView extends BaseContractView<Presenter> {
 
-        void showImovels(ArrayList<Imovel> imovels);
+        void showImoveis(ArrayList<Imovel> imovels);
 
         void showImovelsError();
 
@@ -22,7 +22,7 @@ public interface ImovelContract {
 
         void showImovelDetailsUi(Imovel imovel, @Nullable android.view.View v);
 
-        void addImovels(ArrayList<Imovel> imovels);
+        void addImoveis(ArrayList<Imovel> imovels);
 
         void addMoreImovelsError();
     }
