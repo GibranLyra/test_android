@@ -10,7 +10,7 @@
     <dimen name="xsmall_margin">2dp</dimen>
 
     <dimen name="text_size_xsmall">14sp</dimen>
-    <dimen name="text_size_small">18sp</dimen>
+    <dimen name="text_size_small">16sp</dimen>
     <dimen name="text_size_normal">20sp</dimen>
     <dimen name="text_size_large">24sp</dimen>
 </resources>

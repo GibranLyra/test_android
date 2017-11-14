@@ -4,7 +4,6 @@ import gibran.com.br.zapservice.imovel.ImovelDataSource;
 import gibran.com.br.zaptest.helpers.ObserverHelper;
 import gibran.com.br.zaptest.helpers.schedulers.BaseSchedulerProvider;
 import io.reactivex.disposables.Disposable;
-import timber.log.Timber;
 
 /**
  * Created by gibranlyra on 25/08/17.
@@ -14,7 +13,6 @@ public class ImovelDetailsPresenter implements ImovelDetailsContract.Presenter {
 
     private ImovelDataSource imovelsRepository;
     private ImovelDetailsContract.ContractView view;
-    private ImovelDetailsContract.Presenter presenterContract;
     private BaseSchedulerProvider schedulerProvider;
     private Disposable getImovelDisposable;
 
@@ -36,7 +34,6 @@ public class ImovelDetailsPresenter implements ImovelDetailsContract.Presenter {
                     view.showImovel(imovel);
                     view.showLoading(false);
                 }, e -> {
-                    Timber.e(e, "loadImovel: %s", e.getMessage());
                     view.showImovelError();
                     view.showLoading(false);
                 });

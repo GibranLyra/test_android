@@ -15,130 +15,136 @@
         android:layout_gravity="center"/>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/fragment_imovel_details_info_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/fragment_imovel_details_card_view"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/normal_margin"
-            app:cardCornerRadius="4dp"
-            app:cardUseCompatPadding="true">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/normal_padding">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/fragment_imovel_details_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/normal_padding"
-                android:paddingLeft="@dimen/normal_padding"
-                android:paddingRight="@dimen/normal_padding">
+                android:layout_height="wrap_content"
+                android:minHeight="300dp"
+                tools:src="@drawable/placeholder"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginBottom="@dimen/normal_margin"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingEnd="@dimen/xsmall_padding"
-                    android:paddingStart="@dimen/xsmall_padding">
-
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/character_recycler_character_card"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:paddingBottom="@dimen/normal_padding"
-                        app:cardCornerRadius="50dp">
-
-                        <ImageView
-                            android:id="@+id/fragment_imovel_details_avatar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:src="@drawable/placeholder"/>
-                    </android.support.v7.widget.CardView>
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/fragment_imovel_details_author"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:ellipsize="end"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="@dimen/xsmall_padding"
-                        android:textColor="@color/accent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/xsmall_padding"
+                        android:paddingEnd="@dimen/small_padding"
+                        android:paddingStart="@dimen/small_padding"
+                        android:paddingTop="@dimen/xsmall_padding"
+                        android:text="Valor"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/text_size_normal"/>
+
+                    <TextView
+                        android:id="@+id/fragment_imovel_details_sale_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/xsmall_padding"
+                        android:paddingEnd="@dimen/small_padding"
+                        android:paddingStart="@dimen/small_padding"
+                        android:paddingTop="@dimen/xsmall_padding"
+                        android:textSize="@dimen/text_size_small"
+                        tools:text="R$100.000"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginBottom="@dimen/normal_margin"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fragment_imovel_details_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/xsmall_padding"
+                        android:paddingEnd="@dimen/small_padding"
+                        android:paddingStart="@dimen/small_padding"
+                        android:paddingTop="@dimen/xsmall_padding"
+                        android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_normal"
-                        tools:text="author name"/>
+                        tools:text="Tipo do apartamento"/>
+
+                    <TextView
+                        android:id="@+id/fragment_imovel_details_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/xsmall_padding"
+                        android:paddingEnd="@dimen/small_padding"
+                        android:paddingStart="@dimen/small_padding"
+                        android:paddingTop="@dimen/xsmall_padding"
+                        android:textSize="@dimen/text_size_small"
+                        tools:text="Rua das palmeiras, 1233"/>
                 </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-
-                <TextView
-                    android:id="@+id/fragment_imovel_details_created_at"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/xsmall_padding"
-                    android:textSize="@dimen/text_size_normal"
-                    tools:text="20/02/2017"/>
-
-                <ImageView
-                    android:id="@+id/fragment_imovel_details_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="320dp"
-                    android:contentDescription="@string/imovel_details_image_description"
-                    android:transitionName="imovel_image_transition"
-                    tools:src="@drawable/placeholder"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/fragment_imovel_details_likes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/small_padding"
-                        android:drawableStart="@drawable/ic_favorite_black_24dp"
-                        android:padding="@dimen/small_padding"
-                        android:textSize="@dimen/text_size_small"
-                        tools:text="1000"/>
-
-
-                    <TextView
-                        android:id="@+id/fragment_imovel_details_views_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/small_padding"
-                        android:drawableStart="@drawable/ic_remove_views_24dp"
-                        android:textSize="@dimen/text_size_small"
-                        tools:text="100"/>
-
-                    <TextView
-                        android:id="@+id/fragment_imovel_details_buckets_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/small_padding"
-                        android:drawableStart="@drawable/ic_bucket_black_24dp"
-                        android:padding="@dimen/normal_padding"
-                        android:textSize="@dimen/text_size_small"
-                        tools:text="1000"/>
-                </LinearLayout>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/normal_margin"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/fragment_imovel_details_description"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/normal_padding"
-                    android:textSize="@dimen/text_size_small"
-                    tools:text="Description"/>
+                    android:orientation="vertical">
 
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/xsmall_padding"
+                        android:paddingEnd="@dimen/small_padding"
+                        android:paddingStart="@dimen/small_padding"
+                        android:paddingTop="@dimen/xsmall_padding"
+                        android:text="Descricao"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/text_size_normal"/>
+
+                    <TextView
+                        android:id="@+id/fragment_imovel_details_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        android:paddingBottom="@dimen/xsmall_padding"
+                        android:paddingEnd="@dimen/small_padding"
+                        android:paddingStart="@dimen/small_padding"
+                        android:paddingTop="@dimen/xsmall_padding"
+                        android:textSize="@dimen/text_size_small"
+                        tools:text="Excelente apartamento 2 dormitorios"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </FrameLayout>

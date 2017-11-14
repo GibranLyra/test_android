@@ -55,7 +55,7 @@ public class ImovelDetailsActivity extends AppCompatActivity {
         ImovelDetailsFragment fragment =
                 (ImovelDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.view_container);
         if (fragment == null) {
-            fragment = ImovelDetailsFragment.newInstance(imovel);
+            fragment = ImovelDetailsFragment.newInstance(imovel.getCodImovel());
             ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.view_container);
         }
         presenter = new ImovelDetailsPresenter(ImovelApi.getInstance(), fragment, SchedulerProvider.getInstance());

@@ -62,12 +62,6 @@ public class ImovelItem extends BaseRecyclerItem<Imovel, ImovelItem, ImovelItem.
         viewHolder.priceView.setText(String.valueOf(getModel().getPrecoVenda()));
         viewHolder.addressView.setText(getModel().getEndereco().getCidade());
         viewHolder.informationView.setText(String.valueOf(getModel().getAreaTotal()));
-//        Resources resources = context.getResources();
-//        viewHolder.addressView.setText(String.format(resources.getString(R.string.imovel_item_view_count_text),
-//                String.valueOf(getModel().getViewsCount())));
-//        String createdAt = ActivityHelper.getFormatedDate(getModel().getCreatedAt());
-//        viewHolder.informationView.setText(String.format(resources.getString(R.string.imovel_item_created_at_text),
-//                createdAt));
     }
 
     //reset the view here for better performance

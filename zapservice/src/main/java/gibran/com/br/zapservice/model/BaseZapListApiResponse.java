@@ -3,12 +3,14 @@ package gibran.com.br.zapservice.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by gibranlyra on 13/11/17.
  */
 
-public class BaseZapApiResponse<T> {
-    @SerializedName("Imovel")
+public class BaseZapListApiResponse<T extends List> {
+    @SerializedName("Imoveis")
     @Expose
     private T data;
 

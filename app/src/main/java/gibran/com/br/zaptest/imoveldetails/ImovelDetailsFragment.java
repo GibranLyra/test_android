@@ -3,11 +3,14 @@ package gibran.com.br.zaptest.imoveldetails;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.ContentLoadingProgressBar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,32 +29,28 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
     private static final String LOADED_IMOVEL = "loadedImovel";
     @BindView(R.id.fragment_imovel_details_progress_bar)
     ContentLoadingProgressBar progressBar;
-    @BindView(R.id.fragment_imovel_details_author)
-    TextView authorView;
+    @BindView(R.id.fragment_imovel_details_info_container)
+    View infoContainer;
     @BindView(R.id.fragment_imovel_details_image)
     ImageView imageView;
-    @BindView(R.id.fragment_imovel_details_avatar)
-    ImageView avatarView;
-    @BindView(R.id.fragment_imovel_details_likes)
-    TextView likesView;
-    @BindView(R.id.fragment_imovel_details_buckets_count)
-    TextView bucketsCountView;
+    @BindView(R.id.fragment_imovel_details_sale_price)
+    TextView salePrice;
+    @BindView(R.id.fragment_imovel_details_type)
+    TextView typeView;
+    @BindView(R.id.fragment_imovel_details_address)
+    TextView addressView;
     @BindView(R.id.fragment_imovel_details_description)
     TextView descriptionView;
-    @BindView(R.id.fragment_imovel_details_views_count)
-    TextView countsView;
-    @BindView(R.id.fragment_imovel_details_created_at)
-    TextView createdAtView;
 
-    private static final String EXTRA_IMOVEL = "Imovel";
+    private static final String EXTRA_IMOVEL = "ImovelId";
     private Unbinder unbinder;
     private ImovelDetailsContract.Presenter presenter;
     private Imovel imovel;
 
-    public static ImovelDetailsFragment newInstance(Imovel imovel) {
+    public static ImovelDetailsFragment newInstance(int imovelId) {
         ImovelDetailsFragment fragment = new ImovelDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(EXTRA_IMOVEL, imovel);
+        bundle.putInt(EXTRA_IMOVEL, imovelId);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -61,12 +60,12 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
         View view = inflater.inflate(R.layout.fragment_imovel_details, container, false);
         unbinder = ButterKnife.bind(this, view);
         if (savedInstanceState == null) {
-            presenter.loadImovel(getImovelFromBundle().getCodImovel());
+            presenter.loadImovel(getImovelIdFromBundle());
         } else {
             imovel = savedInstanceState.getParcelable(LOADED_IMOVEL);
             if (imovel == null) {
                 //If we are restoring the state but dont have a imovel, we load it
-                presenter.loadImovel(getImovelFromBundle().getCodImovel());
+                presenter.loadImovel(getImovelIdFromBundle());
             } else {
                 //If we already have the imovels we simply add them to the list
                 showImovel(imovel);
@@ -91,35 +90,33 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
     @Override
     public void showImovel(Imovel imovel) {
         this.imovel = imovel;
+        infoContainer.setVisibility(View.VISIBLE);
         setupView(imovel);
     }
 
-    private Imovel getImovelFromBundle() {
+    private int getImovelIdFromBundle() {
         Bundle bundle = this.getArguments();
-        Imovel imovel = bundle.getParcelable(EXTRA_IMOVEL);
-        if (imovel != null) {
-            return imovel;
-        } else {
-            throw new RuntimeException("Imovel cannot be null");
-        }
+        return bundle.getInt(EXTRA_IMOVEL);
     }
 
     private void setupView(Imovel imovel) {
-        // TODO: 13/11/17 fotos
-//        if (!TextUtils.isEmpty(imovel.getFotos().getNormal())) {
-//            Glide.with(getContext())
-//                    .load(imovel.getImages().getNormal())
-//                    .into(imageView);
-//        } else {
-//            Glide.with(getContext())
-//                    .load(R.drawable.placeholder)
-//                    .into(imageView);
-//        }
-//        if (!TextUtils.isEmpty(imovel.getUser().getAvatarUrl())) {
-//            Glide.with(getContext())
-//                    .load(imovel.getUser().getAvatarUrl())
-//                    .into(avatarView);
-//        }
+        if (!imovel.getFotos().isEmpty()) {
+            Glide.with(getContext())
+                    .load(imovel.getFotos().get(0))
+                    .into(imageView);
+        } else if (!TextUtils.isEmpty(imovel.getUrlImagem())) {
+            Glide.with(getContext())
+                    .load(imovel.getUrlImagem())
+                    .into(imageView);
+        } else {
+            Glide.with(getContext())
+                    .load(R.drawable.placeholder)
+                    .into(imageView);
+        }
+        typeView.setText(imovel.getTipoImovel());
+        salePrice.setText(String.valueOf(imovel.getPrecoVenda()));
+        addressView.setText(imovel.getEndereco().getCidade());
+        descriptionView.setText(imovel.getObservacao());
     }
 
 
@@ -133,8 +130,14 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
     }
 
     @Override
+    public void showImovelError() {
+        super.showImovelError();
+        infoContainer.setVisibility(View.GONE);
+    }
+
+    @Override
     protected void reloadFragment() {
-        presenter.loadImovel(getImovelFromBundle().getCodImovel());
+        presenter.loadImovel(getImovelIdFromBundle());
     }
 
     @Override
