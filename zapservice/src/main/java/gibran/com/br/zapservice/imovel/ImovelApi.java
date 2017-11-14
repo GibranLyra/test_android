@@ -3,6 +3,7 @@ package gibran.com.br.zapservice.imovel;
 import java.util.ArrayList;
 
 import gibran.com.br.zapservice.ZapApiModule;
+import gibran.com.br.zapservice.model.Cliente;
 import gibran.com.br.zapservice.model.Imovel;
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -43,5 +44,12 @@ public class ImovelApi implements ImovelDataSource {
         return imovelService.getImovel(imovelId)
                 .doOnError(e -> Timber.e(e, "getImovel: %s", e.getMessage()))
                 .map(imovel -> imovel.getData());
+    }
+
+    @Override
+    public Observable<Object> postMessage(Cliente cliente) {
+        return imovelService.postContato(cliente)
+                .doOnError(e -> Timber.e(e, "postMessage: %s", e.getMessage()))
+                .map(imovelBaseZapApiResponse -> imovelBaseZapApiResponse.getData());
     }
 }

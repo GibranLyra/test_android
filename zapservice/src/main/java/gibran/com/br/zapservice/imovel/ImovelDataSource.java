@@ -2,6 +2,7 @@ package gibran.com.br.zapservice.imovel;
 
 import java.util.ArrayList;
 
+import gibran.com.br.zapservice.model.Cliente;
 import gibran.com.br.zapservice.model.Imovel;
 import io.reactivex.Observable;
 
@@ -13,4 +14,6 @@ public interface ImovelDataSource {
     Observable<ArrayList<Imovel>> getImoveis();
 
     Observable<Imovel> getImovel(int imovelId);
+
+    Observable<Object> postMessage(Cliente cliente);
 }

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import gibran.com.br.zapservice.model.BaseZapApiResponse;
 import gibran.com.br.zapservice.model.BaseZapListApiResponse;
+import gibran.com.br.zapservice.model.Cliente;
 import gibran.com.br.zapservice.model.Imovel;
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -20,5 +23,8 @@ public interface ImovelService {
 
     @GET("imoveis/{imovelId}")
     Observable<BaseZapApiResponse<Imovel>> getImovel(@Path("imovelId") int imovelId);
+
+    @POST("imoveis/contato")
+    Observable<BaseZapApiResponse<Object>> postContato(@Body Cliente cliente);
 
 }

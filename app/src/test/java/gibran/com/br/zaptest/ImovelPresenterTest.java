@@ -69,7 +69,7 @@ public class ImovelPresenterTest {
         when(imovelDataSource.getImoveis()).thenReturn(Observable.just(IMOVEIS));
         contractPresenter.loadImoveis();
         verify(contractView).setPresenter(contractPresenter);
-        verify(contractView, never()).addMoreImovelsError();
+        verify(contractView, never()).showImovelsError();
     }
 
     @Test
@@ -77,7 +77,7 @@ public class ImovelPresenterTest {
         when(imovelDataSource.getImoveis()).thenReturn(Observable.error(new Exception()));
         contractPresenter.loadImoveis();
         verify(contractView).setPresenter(contractPresenter);
-        verify(contractView).addMoreImovelsError();
+        verify(contractView).showImovelsError();
         verify(contractView, never()).setPresenter(contractPresenter);
     }
 

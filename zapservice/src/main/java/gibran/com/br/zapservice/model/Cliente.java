@@ -6,6 +6,7 @@ import android.os.Parcelable;
 public class Cliente implements Parcelable {
     private String nomeFantasia;
     private int codCliente;
+    private String telefone;
 
     public String getNomeFantasia() {
         return nomeFantasia;
@@ -13,6 +14,25 @@ public class Cliente implements Parcelable {
 
     public void setNomeFantasia(String nomeFantasia) {
         this.nomeFantasia = nomeFantasia;
+    }
+
+    public int getCodCliente() {
+        return codCliente;
+    }
+
+    public void setCodCliente(int codCliente) {
+        this.codCliente = codCliente;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public Cliente() {
     }
 
     @Override
@@ -24,14 +44,13 @@ public class Cliente implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.nomeFantasia);
         dest.writeInt(this.codCliente);
-    }
-
-    public Cliente() {
+        dest.writeString(this.telefone);
     }
 
     protected Cliente(Parcel in) {
         this.nomeFantasia = in.readString();
         this.codCliente = in.readInt();
+        this.telefone = in.readString();
     }
 
     public static final Creator<Cliente> CREATOR = new Creator<Cliente>() {
