@@ -66,7 +66,7 @@ public class ImovelPresenter implements ImovelContract.Presenter {
                         e -> {
                             Timber.e(e, "loadImoveis: %s", e.getMessage());
                             view.showLoading(false);
-                            view.showImovelsError();
+                            view.showImovelError();
                         });
 
     }

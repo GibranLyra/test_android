@@ -133,7 +133,7 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
     }
 
     @Override
-    public void showImovelsError() {
+    public void showImovelError() {
         swipeToRefresh.setRefreshing(false);
         showImovelError();
     }

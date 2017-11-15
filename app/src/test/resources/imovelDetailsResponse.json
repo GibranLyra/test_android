@@ -1,0 +1,56 @@
+{
+  "Imovel": {
+    "CodImovel": 1,
+    "TipoImovel": "Apartamento",
+    "Endereco": {
+      "Logradouro": "Rua Sem Nome",
+      "Numero": "100",
+      "Complemento": "",
+      "CEP": "03591010",
+      "Bairro": "BARRA FUNDA",
+      "Cidade": "SAO PAULO",
+      "Estado": "SP",
+      "Zona": "Zona Oeste"
+    },
+    "PrecoVenda": 195000,
+    "Dormitorios": 1,
+    "Suites": 0,
+    "Vagas": 0,
+    "AreaUtil": 31,
+    "AreaTotal": 31,
+    "DataAtualizacao": "/Date(1461328695423)/",
+    "Cliente": {
+      "CodCliente": 2294995,
+      "NomeFantasia": "Roselene Cardoso"
+    },
+    "Fotos": [
+      "http://imagens.zapcorp.com.br/imoveis/2294995/vivabarra/1c8fee3d141044e594d9_grande.jpg",
+      "http://imagens.zapcorp.com.br/imoveis/2294995/vivabarra/b97f690563934eb4a3da_grande.jpg",
+      "http://imagens.zapcorp.com.br/imoveis/2294995/vivabarra/81c1a54ab9b844d2b120_grande.jpg",
+      "http://imagens.zapcorp.com.br/imoveis/2294995/vivabarra/30a53d30ef0146ae9f0c_grande.jpg",
+      "http://imagens.zapcorp.com.br/imoveis/2294995/vivabarra/6dd1f69bc1c647bb9e27_grande.jpg",
+      "http://imagens.zapcorp.com.br/imoveis/2294995/vivabarra/89f7683e067c426ab0a2_grande.jpg",
+      "http://imagens.zapcorp.com.br/imoveis/2294995/vivabarra/7b4d947596a04c8cb30a_grande.jpg"
+    ],
+    "SubTipoOferta": "Destaque",
+    "Observacao": "Apartamento reformado, em um prédio moderno e dos mais bem cuidados da região central. Ao lado das principais faculdades da região e  a apenas 5 minutos do metrô .\nPrédio com jardim, salão de festas, sala  de ginástica,  sauna, piscina, forno de pizza e churrasqueira .\nUma  vaga de garagem coberta e demarcada . \nPortaria 24 horas\n",
+    "Caracteristicas": [
+      "Ar Condicionado",
+      "Armário de Cozinha",
+      "Armário Embutido",
+      "Escritório",
+      "Estuda Permuta",
+      "Mobiliado"
+    ],
+    "PrecoCondominio": 978,
+    "SubtipoImovel": "Apartamento Padrão",
+    "CaracteristicasComum": [
+      "Churrasqueira",
+      "Piscina",
+      "Sala de Ginástica",
+      "Salão de Festas",
+      "Sauna"
+    ],
+    "InformacoesComplementares": ""
+  }
+}

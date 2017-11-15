@@ -1,0 +1,301 @@
+{
+  "Imoveis": [
+    {
+      "CodImovel": 1,
+      "TipoImovel": "Apartamento",
+      "Endereco": {
+        "Numero": "100",
+        "CEP": "03591010",
+        "Bairro": "BARRA FUNDA",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Zona Oeste"
+      },
+      "PrecoVenda": 195000,
+      "Dormitorios": 1,
+      "Suites": 0,
+      "Vagas": 0,
+      "AreaUtil": 31,
+      "AreaTotal": 31,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 2294995,
+        "NomeFantasia": "Roselene Cardoso"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/imoveis/2294995/vivabarra/1c8fee3d141044e594d9_grande.jpg",
+      "SubTipoOferta": "Destaque",
+      "SubtipoImovel": "Apartamento Padrão"
+    },
+    {
+      "CodImovel": 8764402,
+      "TipoImovel": "Comercial/Industrial",
+      "Endereco": {
+        "Logradouro": "RUA QUINZE DE NOVEMBRO",
+        "Numero": "184",
+        "Complemento": "Conjunto 1.101",
+        "CEP": "01013904",
+        "Bairro": "CENTRO",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Centro"
+      },
+      "PrecoVenda": 525000,
+      "Dormitorios": 4,
+      "Suites": 0,
+      "Vagas": 0,
+      "AreaUtil": 131,
+      "AreaTotal": 166,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 1785817,
+        "NomeFantasia": "Marcelo"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/imoveis/1785817/zap692308/3c3d8b980f2c4b40a403_grande.jpg",
+      "StatusQualidadeTotal": false,
+      "EstagioObra": "NaoInformado",
+      "SubTipoOferta": "Destaque",
+      "SubtipoImovel": "Conjunto Comercial/Sala"
+    },
+    {
+      "CodImovel": 10565168,
+      "TipoImovel": "Apartamento",
+      "Endereco": {
+        "Logradouro": "AVENIDA ESTADO, DO",
+        "Numero": "5748",
+        "Complemento": "",
+        "CEP": "01516100",
+        "Bairro": "CENTRO",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Centro"
+      },
+      "PrecoVenda": 210000,
+      "Dormitorios": 1,
+      "Suites": 0,
+      "Vagas": 0,
+      "AreaUtil": 33,
+      "AreaTotal": 33,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 2226241,
+        "NomeFantasia": "Lopes Castan"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/2226241/7c67cadc-2b45-4252-ac37-451df5d4972f_grande.jpg",
+      "StatusQualidadeTotal": false,
+      "EstagioObra": "NaoInformado",
+      "SubTipoOferta": "Normal",
+      "SubtipoImovel": "Apartamento Padrão"
+    },
+    {
+      "CodImovel": 11062221,
+      "TipoImovel": "Apartamento",
+      "Endereco": {
+        "Logradouro": "RUA ANTONIO MACHADO",
+        "Numero": "266",
+        "Complemento": "Várias Unidades",
+        "CEP": "03677230",
+        "Bairro": "S MIGUEL PTA",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Zona Leste"
+      },
+      "PrecoVenda": 309000,
+      "Dormitorios": 2,
+      "Suites": 1,
+      "Vagas": 1,
+      "AreaUtil": 54,
+      "AreaTotal": 54,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 2506850,
+        "NomeFantasia": "ZEN CASA IMOVEIS"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/2506850/d8a76b8b-bc9b-49b8-8306-0482b9a2022f_grande.jpg",
+      "StatusQualidadeTotal": false,
+      "EstagioObra": "NaoInformado",
+      "SubTipoOferta": "Normal",
+      "SubtipoImovel": "Apartamento Padrão"
+    },
+    {
+      "CodImovel": 10711073,
+      "TipoImovel": "Apartamento",
+      "Endereco": {
+        "Logradouro": "RUA RENATO EGYDIO DE SOUSA ARANHA",
+        "Numero": "221",
+        "Complemento": "",
+        "CEP": "05353050",
+        "Bairro": "VL S FRANCISCO",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Zona Sul"
+      },
+      "PrecoVenda": 650000,
+      "Dormitorios": 2,
+      "Suites": 1,
+      "Vagas": 2,
+      "AreaUtil": 104,
+      "AreaTotal": 104,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 1316130,
+        "NomeFantasia": "Krisos Imobiliaria"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/1316130/359c99b1-f722-4808-a450-a1f32a6a63da_grande.jpg",
+      "StatusQualidadeTotal": false,
+      "EstagioObra": "NaoInformado",
+      "SubTipoOferta": "Destaque",
+      "SubtipoImovel": "Apartamento Padrão"
+    },
+    {
+      "CodImovel": 10555364,
+      "TipoImovel": "Apartamento",
+      "Endereco": {
+        "Logradouro": "AVENIDA LUIS STAMATIS",
+        "Numero": "1031",
+        "Complemento": "",
+        "CEP": "02260001",
+        "Bairro": "VL CONSTÂNCIA",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Zona Sul"
+      },
+      "PrecoVenda": 300000,
+      "Dormitorios": 2,
+      "Suites": 1,
+      "Vagas": 1,
+      "AreaUtil": 53,
+      "AreaTotal": 53,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 2066920,
+        "NomeFantasia": "LOPES CONDESSA"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/2066920/d0703057-b887-4228-a134-4cfc44d747ce_grande.jpg",
+      "StatusQualidadeTotal": false,
+      "EstagioObra": "NaoInformado",
+      "SubTipoOferta": "Destaque",
+      "SubtipoImovel": "Apartamento Padrão"
+    },
+    {
+      "CodImovel": 9389359,
+      "TipoImovel": "Apartamento",
+      "Endereco": {
+        "Logradouro": "RUA CONDE DE SAO JOAQUIM",
+        "Numero": "340",
+        "Complemento": "",
+        "CEP": "01320010",
+        "Bairro": "BELA VISTA",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Centro"
+      },
+      "PrecoVenda": 314000,
+      "Dormitorios": 1,
+      "Suites": 0,
+      "Vagas": 1,
+      "AreaUtil": 30,
+      "AreaTotal": 57,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 2668502,
+        "NomeFantasia": "Guilherme"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/imoveis/2668502/zap734176/ce60ecf62b8b4a269653_grande.jpg",
+      "StatusQualidadeTotal": false,
+      "EstagioObra": "NaoInformado",
+      "SubTipoOferta": "Destaque",
+      "SubtipoImovel": "Apartamento Padrão"
+    },
+    {
+      "CodImovel": 9924045,
+      "TipoImovel": "Apartamento",
+      "Endereco": {
+        "Logradouro": "RUA FRANKLIN MAGALHAES",
+        "Numero": "Sob Consulta",
+        "Complemento": "",
+        "CEP": "04374000",
+        "Bairro": "VL STA CATARINA",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Zona Sul"
+      },
+      "PrecoVenda": 372000,
+      "Dormitorios": 2,
+      "Suites": 0,
+      "Vagas": 2,
+      "AreaUtil": 64,
+      "AreaTotal": 64,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 2300761,
+        "NomeFantasia": "SkyRealty"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/2300761/942886d6-3e96-437b-ae32-d8bcf2e800fd_grande.jpg",
+      "StatusQualidadeTotal": false,
+      "EstagioObra": "NaoInformado",
+      "SubTipoOferta": "Normal",
+      "DistanciaKilometros": 5669.71117077715,
+      "SubtipoImovel": "Apartamento Padrão"
+    },
+    {
+      "CodImovel": 9343813,
+      "TipoImovel": "Apartamento",
+      "Endereco": {
+        "Logradouro": "AVENIDA NOSSA SENHORA DO SABARA",
+        "Numero": "Sob Consulta",
+        "Complemento": "",
+        "CEP": "04447021",
+        "Bairro": "JD SABARÁ",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Zona Sul"
+      },
+      "PrecoVenda": 276000,
+      "Dormitorios": 2,
+      "Suites": 0,
+      "Vagas": 1,
+      "AreaUtil": 48,
+      "AreaTotal": 48,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 2300761,
+        "NomeFantasia": "SkyRealty"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/2300761/31b3ac1e-1b86-4e24-a5b7-33b1236c794c_grande.jpg",
+      "StatusQualidadeTotal": false,
+      "EstagioObra": "NaoInformado",
+      "SubTipoOferta": "Normal",
+      "SubtipoImovel": "Apartamento Padrão"
+    },
+    {
+      "CodImovel": 10854915,
+      "TipoImovel": "Apartamento",
+      "Endereco": {
+        "Logradouro": "RUA JOSE BENEDITO SALINAS",
+        "Numero": "Sob Consulta",
+        "Complemento": "",
+        "CEP": "04674200",
+        "Bairro": "JD MARAJOARA",
+        "Cidade": "SAO PAULO",
+        "Estado": "SP",
+        "Zona": "Zona Sul"
+      },
+      "PrecoVenda": 435000,
+      "Dormitorios": 2,
+      "Suites": 0,
+      "Vagas": 1,
+      "AreaUtil": 67,
+      "AreaTotal": 67,
+      "DataAtualizacao": "/Date(-62135596800000-0000)/",
+      "Cliente": {
+        "CodCliente": 2300761,
+        "NomeFantasia": "SkyRealty"
+      },
+      "UrlImagem": "http://imagens.zapcorp.com.br/2300761/fafd0727-d00d-436e-ad29-2dc3261ef7df_grande.jpg",
+      "StatusQualidadeTotal": false,
+      "EstagioObra": "NaoInformado",
+      "SubTipoOferta": "Destaque",
+      "SubtipoImovel": "Apartamento Padrão"
+    }
+  ]
+}

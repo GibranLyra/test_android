@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import gibran.com.br.zapservice.ZapApiModule;
 import gibran.com.br.zapservice.imovel.ImovelDataSource;
+import gibran.com.br.zapservice.model.BaseZapListApiResponse;
 import gibran.com.br.zapservice.model.Imovel;
 import gibran.com.br.zaptest.helpers.schedulers.ImmediateSchedulerProvider;
 import gibran.com.br.zaptest.imovel.ImovelContract;
@@ -43,7 +44,7 @@ public class ImovelPresenterTest {
     private ImovelContract.ContractView contractView;
 
     private ImovelContract.Presenter contractPresenter;
-    private ArrayList<Imovel> IMOVEIS;
+    private BaseZapListApiResponse<ArrayList<Imovel>> IMOVEIS;
     private ImmediateSchedulerProvider schedulerProvider;
 
     @Before
@@ -59,48 +60,37 @@ public class ImovelPresenterTest {
         when(contractView.isActive()).thenReturn(true);
 
         Gson gson = ZapApiModule.getDefaultGsonBuilder();
-        InputStream imovelsRaw = getClass().getClassLoader().getResourceAsStream("imovelsResponse.json");
+        InputStream imovelsRaw = getClass().getClassLoader().getResourceAsStream("imoveisResponse.json");
         Reader imovelsResponseJson = new BufferedReader(new InputStreamReader(imovelsRaw));
         IMOVEIS = gson.fromJson(imovelsResponseJson, getImovelsType());
     }
 
     @Test
-    public void loadImovelPageFromServiceAndLoadIntoView() throws Exception {
-        when(imovelDataSource.getImoveis()).thenReturn(Observable.just(IMOVEIS));
+    public void loadImoveisFromServiceAndLoadIntoView() throws Exception {
+        when(imovelDataSource.getImoveis()).thenReturn(Observable.just(IMOVEIS.getData()));
         contractPresenter.loadImoveis();
         verify(contractView).setPresenter(contractPresenter);
-        verify(contractView, never()).showImovelsError();
+        verify(contractView, never()).showImovelError();
     }
 
     @Test
-    public void loadImovelPageException() throws Exception {
+    public void loadImoveisException() throws Exception {
         when(imovelDataSource.getImoveis()).thenReturn(Observable.error(new Exception()));
         contractPresenter.loadImoveis();
         verify(contractView).setPresenter(contractPresenter);
-        verify(contractView).showImovelsError();
-        verify(contractView, never()).setPresenter(contractPresenter);
-    }
-
-    @Test
-    public void loadImovelException() throws Exception {
-        when(imovelDataSource.getImovel(any(Integer.class))).thenReturn(Observable.error(new Exception()));
-        contractPresenter.loadImoveis();
-        verify(contractView).setPresenter(contractPresenter);
-        verify(contractView).showLoading(true);
-        verify(contractView).showLoading(false);
-        verify(contractView).showImovelsError();
-        verify(contractView, never()).showImoveis(any(ArrayList.class));
+        verify(contractView).showImovelError();
+        verify(contractView, never()).showImoveis(any());
     }
 
     @Test
     public void clickOnImovel_ShowDetailUi() {
-        Imovel imovel = IMOVEIS.get(0);
+        Imovel imovel = IMOVEIS.getData().get(0);
         contractPresenter.openImovelDetails(imovel, null);
         // Then imovel detail UI is shown
         verify(contractView).showImovelDetailsUi(any(Imovel.class), eq(null));
     }
 
     public Type getImovelsType() {
-        return new TypeToken<ArrayList<Imovel>>() {}.getType();
+        return new TypeToken<BaseZapListApiResponse<ArrayList<Imovel>>>() {}.getType();
     }
 }

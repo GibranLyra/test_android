@@ -14,7 +14,7 @@ public interface ImovelContract {
 
         void showImoveis(ArrayList<Imovel> imovels);
 
-        void showImovelsError();
+        void showImovelError();
 
         void showLoading(boolean show);
 

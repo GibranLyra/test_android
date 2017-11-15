@@ -21,12 +21,15 @@ import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomPre
 import io.reactivex.Observable;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
  * Created by gibranlyra on 12/09/17.
  */
-public class ImovelDetailsToolbarPresenterTest {
+public class ImovelDetailsBottomPresenterTest {
 
     @Mock
     private ImovelDataSource imovelDataSource;
@@ -50,31 +53,31 @@ public class ImovelDetailsToolbarPresenterTest {
         // The presenter won't update the view unless it's active.
         when(contractView.isActive()).thenReturn(true);
         Gson gson = ZapApiModule.getDefaultGsonBuilder();
-        InputStream imovelRaw = getClass().getClassLoader().getResourceAsStream("imovelsDetailsResponse.json");
+        InputStream imovelRaw = getClass().getClassLoader().getResourceAsStream("imovelDetailsResponse.json");
         Reader imovelResponseJson = new BufferedReader(new InputStreamReader(imovelRaw));
         IMOVEL = gson.fromJson(imovelResponseJson, Imovel.class);
     }
 
     @Test
     public void loadImovelFromServiceAndLoadIntoView() throws Exception {
-        // When open imovel details is requested
-//        when(imovelDataSource.getImovel(IMOVEL.getId())).thenReturn(Observable.just(IMOVEL));
-//        contractPresenter.loadImovel(IMOVEL.getId());
-//        verify(contractView).setPresenter(contractPresenter);
-//        verify(contractView).showLoading(true);
-//        verify(contractView).showImages(eq(IMOVEL));
-//        verify(contractView).showLoading(false);
-//        verify(contractView, never()).showImovelError();
+         //When open imovel details is requested
+        when(imovelDataSource.getImovel(IMOVEL.getCodImovel())).thenReturn(Observable.just(IMOVEL));
+        contractPresenter.loadImovel(IMOVEL.getCodImovel());
+        verify(contractView).setPresenter(contractPresenter);
+        verify(contractView).showLoading(true);
+        verify(contractView).showImovel(eq(IMOVEL));
+        verify(contractView).showLoading(false);
+        verify(contractView, never()).showImovelError();
     }
 
     @Test
     public void loadChannelException() throws Exception {
         when(imovelDataSource.getImovel(any(Integer.class))).thenReturn(Observable.error(new Exception()));
-//        contractPresenter.loadImovel(IMOVEL.getId());
-//        verify(contractView).setPresenter(contractPresenter);
-//        verify(contractView).showLoading(true);
-//        verify(contractView).showLoading(false);
-//        verify(contractView).showImovelError();
-//        verify(contractView, never()).showImages(any(Imovel.class));
+        contractPresenter.loadImovel(IMOVEL.getCodImovel());
+        verify(contractView).setPresenter(contractPresenter);
+        verify(contractView).showLoading(true);
+        verify(contractView).showLoading(false);
+        verify(contractView).showImovelError();
+        verify(contractView, never()).showImovel(any(Imovel.class));
     }
 }
