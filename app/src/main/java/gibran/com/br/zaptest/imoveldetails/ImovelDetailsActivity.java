@@ -60,7 +60,31 @@ public class ImovelDetailsActivity extends AppCompatActivity {
         setupViews(imovel);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     private void setupViews(Imovel imovel) {
+        ArrayList<String> images = new ArrayList<>();
+        images.add(imovel.getUrlImagem());
+//        setupToolbarFragment(images);
+        setupBottomFragment(imovel);
+    }
+
+    private void setupToolbarFragment(ArrayList<String> images) {
+        ImovelDetailsToolbarFragment toolbarFragment =
+                (ImovelDetailsToolbarFragment) getSupportFragmentManager().findFragmentById(R.id.view_container);
+        if (toolbarFragment == null) {
+            toolbarFragment = ImovelDetailsToolbarFragment.newInstance(images);
+            ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), toolbarFragment, R.id.view_container);
+        }
+        toolbarFragmentPresenter = new ImovelDetailsToolbarPresenter(
+                ImovelApi.getInstance(), toolbarFragment, SchedulerProvider.getInstance());
+    }
+
+    private void setupBottomFragment(Imovel imovel) {
         ImovelDetailsBottomFragment bottomFragment =
                 (ImovelDetailsBottomFragment) getSupportFragmentManager().findFragmentById(R.id.view_container);
         if (bottomFragment == null) {
@@ -69,22 +93,5 @@ public class ImovelDetailsActivity extends AppCompatActivity {
         }
         bottomFragmentPresenter = new ImovelDetailsBottomPresenter(ImovelApi.getInstance(), bottomFragment,
                 SchedulerProvider.getInstance());
-        ImovelDetailsToolbarFragment toolbarFragment =
-                (ImovelDetailsToolbarFragment) getSupportFragmentManager().findFragmentById(R.id.view_container);
-        if (toolbarFragment == null) {
-            ArrayList<String> images = new ArrayList<>();
-            images.add(imovel.getUrlImagem());
-            toolbarFragment = ImovelDetailsToolbarFragment.newInstance(images);
-            ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), toolbarFragment, R.id.view_container);
-        }
-        toolbarFragmentPresenter = new ImovelDetailsToolbarPresenter(
-                ImovelApi.getInstance(), toolbarFragment, SchedulerProvider.getInstance());
     }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
-
 }
