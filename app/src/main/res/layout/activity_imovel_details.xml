@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -35,7 +36,7 @@
         android:id="@+id/activity_imovel_details_contact_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_comment_black_24dp"
+        android:src="@drawable/ic_chat_black_24dp"
         app:backgroundTint="@color/primary"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|end"/>

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -77,7 +76,6 @@ public class ImovelDetailsActivity extends AppCompatActivity implements ImovelLo
                 .customView(R.layout.contact_dialog, true)
                 .positiveText(R.string.dialog_send)
                 .negativeText(R.string.dialog_close)
-                .negativeColor(ContextCompat.getColor(this, R.color.md_red_900))
                 .onPositive((dialog, which) -> {
                     Cliente cliente = new Cliente();
                     cliente.setNomeFantasia(String.valueOf(((EditText) dialog.getCustomView()
