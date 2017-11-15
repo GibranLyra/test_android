@@ -10,4 +10,8 @@
     <string name="imovel_item_image_description">Imovel image</string>
     <string name="imovel_details_image_description">Imovel image</string>
     <string name="snackbar_try_again">Tentar Novamente</string>
+    <string name="message_sent">Sua mensagem foi enviada.</string>
+    <string name="message_not_sent">Não conseguimos enviar sua mensagem, tente novamente.</string>
+    <string name="dialog_close">Fechar</string>
+    <string name="dialog_send">Enviar</string>
 </resources>

@@ -1,11 +1,9 @@
 package gibran.com.br.zaptest.imoveldetails.bottomfragment;
 
 import gibran.com.br.zapservice.imovel.ImovelDataSource;
-import gibran.com.br.zapservice.model.Cliente;
 import gibran.com.br.zaptest.helpers.ObserverHelper;
 import gibran.com.br.zaptest.helpers.schedulers.BaseSchedulerProvider;
 import io.reactivex.disposables.Disposable;
-import timber.log.Timber;
 
 /**
  * Created by gibranlyra on 25/08/17.
@@ -29,19 +27,6 @@ public class ImovelDetailsBottomPresenter implements ImovelDetailsBottomContract
     @Override
     public void loadImovel(int imovelId) {
         view.showLoading(true);
-        Cliente cliente = new Cliente();
-        cliente.setCodCliente(1);
-        cliente.setEmail("teste@teste.com");
-        cliente.setTelefone("9 7777-7777");
-        cliente.setNomeFantasia("Gibran");
-        imovelsRepository.postMessage(cliente)
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .subscribe(o -> {
-                    Timber.d("loadImovel: ");
-                }, e -> {
-                    Timber.e(e, "loadImovel: %s", e.getMessage());
-                });
         getImovelDisposable = imovelsRepository.getImovel(imovelId)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())

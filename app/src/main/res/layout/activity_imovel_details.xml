@@ -17,7 +17,8 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways">
 
-            <FrameLayout android:id="@+id/toolbar_view_container"
+            <FrameLayout
+                android:id="@+id/toolbar_view_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -29,6 +30,15 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/activity_imovel_details_contact_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_comment_black_24dp"
+        app:backgroundTint="@color/primary"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|end"/>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -42,13 +52,4 @@
             android:orientation="vertical"/>
     </android.support.v4.widget.NestedScrollView>
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_send_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_comment_black_24dp"
-        app:backgroundTint="@color/primary"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|end"/>
 </android.support.design.widget.CoordinatorLayout>
