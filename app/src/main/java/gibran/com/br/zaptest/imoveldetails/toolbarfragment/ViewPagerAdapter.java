@@ -43,18 +43,10 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup view, int position) {
         View imageLayout = inflater.inflate(R.layout.pager_layout, view, false);
         ImageView imageView = imageLayout.findViewById(R.id.pager_layout_image);
-        if (!images.isEmpty()) {
-            for (String image : images) {
-                if (!TextUtils.isEmpty(image)) {
-                    Glide.with(context)
-                            .load(image)
-                            .into(imageView);
-                } else {
-                    Glide.with(context)
-                            .load(R.drawable.placeholder)
-                            .into(imageView);
-                }
-            }
+        if (!TextUtils.isEmpty(images.get(position))) {
+            Glide.with(context)
+                    .load(images.get(position))
+                    .into(imageView);
         } else {
             Glide.with(context)
                     .load(R.drawable.placeholder)
@@ -67,5 +59,20 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view.equals(object);
+    }
+
+    public void addImage(int index, String image) {
+        images.add(index, image);
+        notifyDataSetChanged();
+    }
+
+    public void addImage(ArrayList<String> images) {
+        this.images.addAll(images);
+        notifyDataSetChanged();
+    }
+
+    public void removeView(int index) {
+        images.remove(index);
+        notifyDataSetChanged();
     }
 }

@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import gibran.com.br.zaptest.R;
 import gibran.com.br.zaptest.base.BaseFragment;
+import me.relex.circleindicator.CircleIndicator;
 
 /**
  * Created by gibranlyra on 15/11/17.
@@ -26,6 +27,8 @@ public class ImovelDetailsToolbarFragment extends BaseFragment<ImovelDetailsTool
 
     @BindView(R.id.fragment_imovel_details_toolbar_pager)
     ViewPager viewPager;
+    @BindView(R.id.fragment_imovel_details_toolbar_indicator)
+    CircleIndicator circleIndicator;
     private ArrayList<String> images;
 
     public static ImovelDetailsToolbarFragment newInstance(ArrayList<String> images) {
@@ -73,6 +76,7 @@ public class ImovelDetailsToolbarFragment extends BaseFragment<ImovelDetailsTool
 
     public void addImage(ArrayList<String> images) {
         images.addAll(images);
-
+        ((ViewPagerAdapter)viewPager.getAdapter()).addImage(images);
+        circleIndicator.setViewPager(viewPager);
     }
 }
