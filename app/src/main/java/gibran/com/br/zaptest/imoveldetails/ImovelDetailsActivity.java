@@ -69,16 +69,16 @@ public class ImovelDetailsActivity extends AppCompatActivity {
     private void setupViews(Imovel imovel) {
         ArrayList<String> images = new ArrayList<>();
         images.add(imovel.getUrlImagem());
-//        setupToolbarFragment(images);
+        setupToolbarFragment(images);
         setupBottomFragment(imovel);
     }
 
     private void setupToolbarFragment(ArrayList<String> images) {
         ImovelDetailsToolbarFragment toolbarFragment =
-                (ImovelDetailsToolbarFragment) getSupportFragmentManager().findFragmentById(R.id.view_container);
+                (ImovelDetailsToolbarFragment) getSupportFragmentManager().findFragmentById(R.id.toolbar_view_container);
         if (toolbarFragment == null) {
             toolbarFragment = ImovelDetailsToolbarFragment.newInstance(images);
-            ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), toolbarFragment, R.id.view_container);
+            ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), toolbarFragment, R.id.toolbar_view_container);
         }
         toolbarFragmentPresenter = new ImovelDetailsToolbarPresenter(
                 ImovelApi.getInstance(), toolbarFragment, SchedulerProvider.getInstance());

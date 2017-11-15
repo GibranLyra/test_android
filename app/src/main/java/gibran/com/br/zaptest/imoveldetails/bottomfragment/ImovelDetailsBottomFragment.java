@@ -2,14 +2,10 @@ package gibran.com.br.zaptest.imoveldetails.bottomfragment;
 
 import android.os.Bundle;
 import android.support.v4.widget.ContentLoadingProgressBar;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,8 +26,6 @@ public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBotto
     ContentLoadingProgressBar progressBar;
     @BindView(R.id.fragment_imovel_details_bottom_info_container)
     View infoContainer;
-    @BindView(R.id.fragment_imovel_details_bottom_image)
-    ImageView imageView;
     @BindView(R.id.fragment_imovel_details_bottom_sale_price)
     TextView salePrice;
     @BindView(R.id.fragment_imovel_details_bottom_type)
@@ -107,19 +101,6 @@ public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBotto
     }
 
     private void setupView(Imovel imovel) {
-        if (!imovel.getFotos().isEmpty()) {
-            Glide.with(getContext())
-                    .load(imovel.getFotos().get(0))
-                    .into(imageView);
-        } else if (!TextUtils.isEmpty(imovel.getUrlImagem())) {
-            Glide.with(getContext())
-                    .load(imovel.getUrlImagem())
-                    .into(imageView);
-        } else {
-            Glide.with(getContext())
-                    .load(R.drawable.placeholder)
-                    .into(imageView);
-        }
         typeView.setText(imovel.getTipoImovel());
         salePrice.setText(getContext().getResources().getString(R.string.imovel_price,
                 String.valueOf(imovel.getPrecoVenda())));
