@@ -1,7 +1,6 @@
-package gibran.com.br.zaptest.imoveldetails;
+package gibran.com.br.zaptest.imoveldetails.bottomfragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -23,8 +22,8 @@ import gibran.com.br.zaptest.base.BaseFragment;
  * Created by gibranlyra on 25/08/17.
  */
 
-public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Presenter>
-        implements ImovelDetailsContract.ContractView {
+public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBottomContract.Presenter>
+        implements ImovelDetailsBottomContract.ContractView {
 
     private static final String LOADED_IMOVEL = "loadedImovel";
     @BindView(R.id.fragment_imovel_details_progress_bar)
@@ -44,11 +43,11 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
 
     private static final String EXTRA_IMOVEL = "ImovelId";
     private Unbinder unbinder;
-    private ImovelDetailsContract.Presenter presenter;
+    private ImovelDetailsBottomContract.Presenter presenter;
     private Imovel imovel;
 
-    public static ImovelDetailsFragment newInstance(int imovelId) {
-        ImovelDetailsFragment fragment = new ImovelDetailsFragment();
+    public static ImovelDetailsBottomFragment newInstance(int imovelId) {
+        ImovelDetailsBottomFragment fragment = new ImovelDetailsBottomFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(EXTRA_IMOVEL, imovelId);
         fragment.setArguments(bundle);
@@ -56,16 +55,16 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_imovel_details, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_imovel_details_bottom, container, false);
         unbinder = ButterKnife.bind(this, view);
         if (savedInstanceState == null) {
-            presenter.loadImovel(getImovelIdFromBundle());
+            presenter.loadImovel(getArguments().getInt(EXTRA_IMOVEL));
         } else {
             imovel = savedInstanceState.getParcelable(LOADED_IMOVEL);
             if (imovel == null) {
                 //If we are restoring the state but dont have a imovel, we load it
-                presenter.loadImovel(getImovelIdFromBundle());
+                presenter.loadImovel(getArguments().getInt(EXTRA_IMOVEL));
             } else {
                 //If we already have the imovels we simply add them to the list
                 showImovel(imovel);
@@ -105,11 +104,6 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
         this.imovel = imovel;
         infoContainer.setVisibility(View.VISIBLE);
         setupView(imovel);
-    }
-
-    private int getImovelIdFromBundle() {
-        Bundle bundle = this.getArguments();
-        return bundle.getInt(EXTRA_IMOVEL);
     }
 
     private void setupView(Imovel imovel) {
@@ -153,7 +147,7 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
 
     @Override
     protected void reloadFragment() {
-        presenter.loadImovel(getImovelIdFromBundle());
+        presenter.loadImovel(getArguments().getInt(EXTRA_IMOVEL));
     }
 
     @Override
@@ -162,7 +156,7 @@ public class ImovelDetailsFragment extends BaseFragment<ImovelDetailsContract.Pr
     }
 
     @Override
-    public void setPresenter(ImovelDetailsContract.Presenter presenter) {
+    public void setPresenter(ImovelDetailsBottomContract.Presenter presenter) {
         this.presenter = presenter;
     }
 }

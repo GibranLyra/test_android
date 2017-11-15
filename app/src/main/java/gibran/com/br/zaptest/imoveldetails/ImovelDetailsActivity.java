@@ -14,6 +14,9 @@ import gibran.com.br.zapservice.model.Imovel;
 import gibran.com.br.zaptest.R;
 import gibran.com.br.zaptest.helpers.ActivityHelper;
 import gibran.com.br.zaptest.helpers.schedulers.SchedulerProvider;
+import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomFragment;
+import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomContract;
+import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomPresenter;
 
 /**
  * Created by gibranlyra on 25/08/17.
@@ -26,7 +29,7 @@ public class ImovelDetailsActivity extends AppCompatActivity {
 
     private static final String EXTRA_IMOVEL = "Imovel";
 
-    private ImovelDetailsContract.Presenter presenter;
+    private ImovelDetailsBottomContract.Presenter presenter;
 
     public static Intent createIntent(Context context, Imovel imovel) {
         Intent intent = new Intent(context, ImovelDetailsActivity.class);
@@ -52,13 +55,13 @@ public class ImovelDetailsActivity extends AppCompatActivity {
     }
 
     private void setupViews(Imovel imovel) {
-        ImovelDetailsFragment fragment =
-                (ImovelDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.view_container);
+        ImovelDetailsBottomFragment fragment =
+                (ImovelDetailsBottomFragment) getSupportFragmentManager().findFragmentById(R.id.view_container);
         if (fragment == null) {
-            fragment = ImovelDetailsFragment.newInstance(imovel.getCodImovel());
+            fragment = ImovelDetailsBottomFragment.newInstance(imovel.getCodImovel());
             ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.view_container);
         }
-        presenter = new ImovelDetailsPresenter(ImovelApi.getInstance(), fragment, SchedulerProvider.getInstance());
+        presenter = new ImovelDetailsBottomPresenter(ImovelApi.getInstance(), fragment, SchedulerProvider.getInstance());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package gibran.com.br.zaptest.imoveldetails;
+package gibran.com.br.zaptest.imoveldetails.bottomfragment;
 
 import gibran.com.br.zapservice.imovel.ImovelDataSource;
 import gibran.com.br.zapservice.model.Cliente;
@@ -11,15 +11,15 @@ import timber.log.Timber;
  * Created by gibranlyra on 25/08/17.
  */
 
-public class ImovelDetailsPresenter implements ImovelDetailsContract.Presenter {
+public class ImovelDetailsBottomPresenter implements ImovelDetailsBottomContract.Presenter {
 
     private ImovelDataSource imovelsRepository;
-    private ImovelDetailsContract.ContractView view;
+    private ImovelDetailsBottomContract.ContractView view;
     private BaseSchedulerProvider schedulerProvider;
     private Disposable getImovelDisposable;
 
-    public ImovelDetailsPresenter(ImovelDataSource imovelDatasource, ImovelDetailsContract.ContractView view,
-                                  BaseSchedulerProvider schedulerProvider) {
+    public ImovelDetailsBottomPresenter(ImovelDataSource imovelDatasource, ImovelDetailsBottomContract.ContractView view,
+                                        BaseSchedulerProvider schedulerProvider) {
         this.imovelsRepository = imovelDatasource;
         this.view = view;
         this.schedulerProvider = schedulerProvider;

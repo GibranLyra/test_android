@@ -1,10 +1,10 @@
-package gibran.com.br.zaptest.imoveldetails;
+package gibran.com.br.zaptest.imoveldetails.bottomfragment;
 
 import gibran.com.br.zapservice.model.Imovel;
 import gibran.com.br.zaptest.base.BaseContractPresenter;
 import gibran.com.br.zaptest.base.BaseContractView;
 
-public interface ImovelDetailsContract {
+public interface ImovelDetailsBottomContract {
 
     interface ContractView extends BaseContractView<Presenter> {
 

@@ -16,8 +16,8 @@ import gibran.com.br.zapservice.ZapApiModule;
 import gibran.com.br.zapservice.imovel.ImovelDataSource;
 import gibran.com.br.zapservice.model.Imovel;
 import gibran.com.br.zaptest.helpers.schedulers.ImmediateSchedulerProvider;
-import gibran.com.br.zaptest.imoveldetails.ImovelDetailsContract;
-import gibran.com.br.zaptest.imoveldetails.ImovelDetailsPresenter;
+import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomContract;
+import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomPresenter;
 import io.reactivex.Observable;
 
 import static org.mockito.Matchers.any;
@@ -26,14 +26,14 @@ import static org.mockito.Mockito.when;
 /**
  * Created by gibranlyra on 12/09/17.
  */
-public class ImovelDetailsPresenterTest {
+public class ImovelDetailsToolbarPresenterTest {
 
     @Mock
     private ImovelDataSource imovelDataSource;
 
     @Mock
-    ImovelDetailsContract.ContractView contractView;
-    private ImovelDetailsContract.Presenter contractPresenter;
+    ImovelDetailsBottomContract.ContractView contractView;
+    private ImovelDetailsBottomContract.Presenter contractPresenter;
 
     private ImmediateSchedulerProvider schedulerProvider;
     private Imovel IMOVEL;
@@ -45,7 +45,7 @@ public class ImovelDetailsPresenterTest {
         MockitoAnnotations.initMocks(this);
         schedulerProvider = new ImmediateSchedulerProvider();
         // Get a reference to the class under test
-        contractPresenter = new ImovelDetailsPresenter(imovelDataSource, contractView, schedulerProvider);
+        contractPresenter = new ImovelDetailsBottomPresenter(imovelDataSource, contractView, schedulerProvider);
 
         // The presenter won't update the view unless it's active.
         when(contractView.isActive()).thenReturn(true);
@@ -62,7 +62,7 @@ public class ImovelDetailsPresenterTest {
 //        contractPresenter.loadImovel(IMOVEL.getId());
 //        verify(contractView).setPresenter(contractPresenter);
 //        verify(contractView).showLoading(true);
-//        verify(contractView).showImovel(eq(IMOVEL));
+//        verify(contractView).showImages(eq(IMOVEL));
 //        verify(contractView).showLoading(false);
 //        verify(contractView, never()).showImovelError();
     }
@@ -75,6 +75,6 @@ public class ImovelDetailsPresenterTest {
 //        verify(contractView).showLoading(true);
 //        verify(contractView).showLoading(false);
 //        verify(contractView).showImovelError();
-//        verify(contractView, never()).showImovel(any(Imovel.class));
+//        verify(contractView, never()).showImages(any(Imovel.class));
     }
 }

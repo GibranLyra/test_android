@@ -8,14 +8,14 @@
     android:paddingTop="?attr/actionBarSize">
 
     <android.support.v4.widget.ContentLoadingProgressBar
-        android:id="@+id/fragment_imovel_details_progress_bar"
+        android:id="@+id/fragment_imovel_details_bottom_progress_bar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/fragment_imovel_details_info_container"
+        android:id="@+id/fragment_imovel_details_bottom_info_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
@@ -28,7 +28,7 @@
             android:paddingTop="@dimen/normal_padding">
 
             <ImageView
-                android:id="@+id/fragment_imovel_details_image"
+                android:id="@+id/fragment_imovel_details_bottom_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="312dp"
@@ -59,7 +59,7 @@
                         android:textSize="@dimen/text_size_normal"/>
 
                     <TextView
-                        android:id="@+id/fragment_imovel_details_sale_price"
+                        android:id="@+id/fragment_imovel_details_bottom_sale_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="@dimen/xsmall_padding"
@@ -84,7 +84,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/fragment_imovel_details_type"
+                        android:id="@+id/fragment_imovel_details_bottom_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="@dimen/xsmall_padding"
@@ -96,7 +96,7 @@
                         tools:text="Tipo do apartamento"/>
 
                     <TextView
-                        android:id="@+id/fragment_imovel_details_address"
+                        android:id="@+id/fragment_imovel_details_bottom_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="@dimen/xsmall_padding"
@@ -132,7 +132,7 @@
                         android:textSize="@dimen/text_size_normal"/>
 
                     <TextView
-                        android:id="@+id/fragment_imovel_details_description"
+                        android:id="@+id/fragment_imovel_details_bottom_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
