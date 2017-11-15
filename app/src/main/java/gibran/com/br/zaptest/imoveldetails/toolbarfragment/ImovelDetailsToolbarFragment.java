@@ -40,7 +40,7 @@ public class ImovelDetailsToolbarFragment extends BaseFragment<ImovelDetailsTool
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_imovel_details_bottom, container, false);
+        View view = inflater.inflate(R.layout.fragment_imovel_details_toolbar, container, false);
         unbinder = ButterKnife.bind(this, view);
         ArrayList<String> images = getArguments().getStringArrayList(EXTRA_IMAGES);
         Glide.with(getContext())

@@ -26,19 +26,19 @@ public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBotto
         implements ImovelDetailsBottomContract.ContractView {
 
     private static final String LOADED_IMOVEL = "loadedImovel";
-    @BindView(R.id.fragment_imovel_details_progress_bar)
+    @BindView(R.id.fragment_imovel_details_bottom_progress_bar)
     ContentLoadingProgressBar progressBar;
-    @BindView(R.id.fragment_imovel_details_info_container)
+    @BindView(R.id.fragment_imovel_details_bottom_info_container)
     View infoContainer;
-    @BindView(R.id.fragment_imovel_details_image)
+    @BindView(R.id.fragment_imovel_details_bottom_image)
     ImageView imageView;
-    @BindView(R.id.fragment_imovel_details_sale_price)
+    @BindView(R.id.fragment_imovel_details_bottom_sale_price)
     TextView salePrice;
-    @BindView(R.id.fragment_imovel_details_type)
+    @BindView(R.id.fragment_imovel_details_bottom_type)
     TextView typeView;
-    @BindView(R.id.fragment_imovel_details_address)
+    @BindView(R.id.fragment_imovel_details_bottom_address)
     TextView addressView;
-    @BindView(R.id.fragment_imovel_details_description)
+    @BindView(R.id.fragment_imovel_details_bottom_description)
     TextView descriptionView;
 
     private static final String EXTRA_IMOVEL = "ImovelId";

@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gibran.com.br.zapservice.imovel.ImovelApi;
@@ -14,9 +16,12 @@ import gibran.com.br.zapservice.model.Imovel;
 import gibran.com.br.zaptest.R;
 import gibran.com.br.zaptest.helpers.ActivityHelper;
 import gibran.com.br.zaptest.helpers.schedulers.SchedulerProvider;
-import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomFragment;
 import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomContract;
+import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomFragment;
 import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomPresenter;
+import gibran.com.br.zaptest.imoveldetails.toolbarfragment.ImovelDetailsToolbarContract;
+import gibran.com.br.zaptest.imoveldetails.toolbarfragment.ImovelDetailsToolbarFragment;
+import gibran.com.br.zaptest.imoveldetails.toolbarfragment.ImovelDetailsToolbarPresenter;
 
 /**
  * Created by gibranlyra on 25/08/17.
@@ -29,7 +34,8 @@ public class ImovelDetailsActivity extends AppCompatActivity {
 
     private static final String EXTRA_IMOVEL = "Imovel";
 
-    private ImovelDetailsBottomContract.Presenter presenter;
+    private ImovelDetailsBottomContract.Presenter bottomFragmentPresenter;
+    private ImovelDetailsToolbarContract.Presenter toolbarFragmentPresenter;
 
     public static Intent createIntent(Context context, Imovel imovel) {
         Intent intent = new Intent(context, ImovelDetailsActivity.class);
@@ -55,13 +61,24 @@ public class ImovelDetailsActivity extends AppCompatActivity {
     }
 
     private void setupViews(Imovel imovel) {
-        ImovelDetailsBottomFragment fragment =
+        ImovelDetailsBottomFragment bottomFragment =
                 (ImovelDetailsBottomFragment) getSupportFragmentManager().findFragmentById(R.id.view_container);
-        if (fragment == null) {
-            fragment = ImovelDetailsBottomFragment.newInstance(imovel.getCodImovel());
-            ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.view_container);
+        if (bottomFragment == null) {
+            bottomFragment = ImovelDetailsBottomFragment.newInstance(imovel.getCodImovel());
+            ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), bottomFragment, R.id.view_container);
         }
-        presenter = new ImovelDetailsBottomPresenter(ImovelApi.getInstance(), fragment, SchedulerProvider.getInstance());
+        bottomFragmentPresenter = new ImovelDetailsBottomPresenter(ImovelApi.getInstance(), bottomFragment,
+                SchedulerProvider.getInstance());
+        ImovelDetailsToolbarFragment toolbarFragment =
+                (ImovelDetailsToolbarFragment) getSupportFragmentManager().findFragmentById(R.id.view_container);
+        if (toolbarFragment == null) {
+            ArrayList<String> images = new ArrayList<>();
+            images.add(imovel.getUrlImagem());
+            toolbarFragment = ImovelDetailsToolbarFragment.newInstance(images);
+            ActivityHelper.addFragmentToActivity(getSupportFragmentManager(), toolbarFragment, R.id.view_container);
+        }
+        toolbarFragmentPresenter = new ImovelDetailsToolbarPresenter(
+                ImovelApi.getInstance(), toolbarFragment, SchedulerProvider.getInstance());
     }
 
     @Override
