@@ -17,7 +17,11 @@ import gibran.com.br.zaptest.imovel.ImovelActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Created by gibranlyra on 12/09/17.
@@ -51,11 +55,33 @@ public class ImovelScreenTest {
     }
 
     @Test
-    public void showAllImovels() {
-        // Add 2 active tasks
+    public void showImovel() {
         onView(withId(R.id.fragment_imovel_recycler))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+        onView(withId(R.id.fragment_imovel_details_toolbar_pager)).check(matches(isDisplayed()));
     }
+
+    @Test
+    public void showContactsDialog() {
+        onView(withId(R.id.fragment_imovel_recycler))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+        onView(withId(R.id.activity_imovel_details_contact_button))
+                .perform(click());
+        onView(withId(R.id.contact_dialog_name)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void sendContact() {
+        onView(withId(R.id.fragment_imovel_recycler))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+        onView(withId(R.id.activity_imovel_details_contact_button)).perform(click());
+        onView(withId(R.id.contact_dialog_name)).perform(click(), replaceText("Gibran Lyra"));
+        onView(withId(R.id.contact_dialog_email)).perform(click(), replaceText("gibranlyra@gmail.com"));
+        onView(withId(R.id.contact_dialog_phone)).perform(click(), replaceText("99999999"));
+        onView(withText(R.string.dialog_send)).perform(click());
+
+    }
+
 
     /**
      * Unregister your Idling Resource so it can be garbage collected and does not leak any memory.
