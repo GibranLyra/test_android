@@ -8,8 +8,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import gibran.com.br.zapservice.model.Cliente;
 import gibran.com.br.zapservice.model.Imovel;
 import gibran.com.br.zaptest.R;
 import gibran.com.br.zaptest.helpers.ActivityHelper;
+import gibran.com.br.zaptest.helpers.Validators;
 import gibran.com.br.zaptest.helpers.schedulers.SchedulerProvider;
 import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomContract;
 import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomFragment;
@@ -76,17 +80,31 @@ public class ImovelDetailsActivity extends AppCompatActivity implements ImovelLo
                 .customView(R.layout.contact_dialog, true)
                 .positiveText(R.string.dialog_send)
                 .negativeText(R.string.dialog_close)
+                .autoDismiss(false)
+                .onNegative((dialog, which) -> dialog.dismiss())
                 .onPositive((dialog, which) -> {
                     Cliente cliente = new Cliente();
-                    cliente.setNomeFantasia(String.valueOf(((EditText) dialog.getCustomView()
-                            .findViewById(R.id.contact_dialog_name)).getText()));
-                    cliente.setEmail(String.valueOf(((EditText) dialog.getCustomView()
-                            .findViewById(R.id.contact_dialog_email)).getText()));
-                    cliente.setTelefone(String.valueOf(((EditText) dialog.getCustomView()
-                            .findViewById(R.id.contact_dialog_phone)).getText()));
+                    EditText nameEditText = dialog.getCustomView().findViewById(R.id.contact_dialog_name);
+                    EditText emailEditText = dialog.getCustomView().findViewById(R.id.contact_dialog_email);
+                    EditText phoneEditText = dialog.getCustomView().findViewById(R.id.contact_dialog_phone);
+                    if (checkEditTextEmpty(nameEditText) ||
+                            checkEditTextEmpty(emailEditText) || checkEditTextEmpty(phoneEditText)) {
+                        return;
+                    }
+                    if (!Validators.isEmailValid(String.valueOf(emailEditText.getText()))) {
+                        emailEditText.setError(getString(R.string.invalid_email));
+                        return;
+                    }
+                    View progress = dialog.getCustomView().findViewById(R.id.contact_dialog_progress);
+                    progress.setVisibility(View.VISIBLE);
+                    dialog.getActionButton(DialogAction.POSITIVE).setEnabled(false);
+                    cliente.setNomeFantasia(String.valueOf(nameEditText.getText()));
+                    cliente.setEmail(String.valueOf(emailEditText.getText()));
+                    cliente.setTelefone(String.valueOf(phoneEditText.getText()));
                     imovelApi.postMessage(cliente)
                             .subscribeOn(SchedulerProvider.getInstance().io())
                             .observeOn(SchedulerProvider.getInstance().ui())
+                            .doAfterTerminate(() -> dialog.dismiss())
                             .subscribe(o ->
                                     Snackbar.make(findViewById(R.id.rootLayout), R.string.message_sent,
                                             Snackbar.LENGTH_SHORT)
@@ -95,6 +113,14 @@ public class ImovelDetailsActivity extends AppCompatActivity implements ImovelLo
                                             Snackbar.LENGTH_LONG));
                 })
                 .show());
+    }
+
+    private boolean checkEditTextEmpty(EditText nameEditText) {
+        if (TextUtils.isEmpty(nameEditText.getText())) {
+            nameEditText.setError(getString(R.string.text_is_mandatory));
+            return true;
+        }
+        return false;
     }
 
     @Override
