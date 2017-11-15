@@ -19,6 +19,7 @@ import gibran.com.br.zaptest.helpers.schedulers.SchedulerProvider;
 import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomContract;
 import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomFragment;
 import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelDetailsBottomPresenter;
+import gibran.com.br.zaptest.imoveldetails.bottomfragment.ImovelLoadedListener;
 import gibran.com.br.zaptest.imoveldetails.toolbarfragment.ImovelDetailsToolbarContract;
 import gibran.com.br.zaptest.imoveldetails.toolbarfragment.ImovelDetailsToolbarFragment;
 import gibran.com.br.zaptest.imoveldetails.toolbarfragment.ImovelDetailsToolbarPresenter;
@@ -27,7 +28,7 @@ import gibran.com.br.zaptest.imoveldetails.toolbarfragment.ImovelDetailsToolbarP
  * Created by gibranlyra on 25/08/17.
  */
 
-public class ImovelDetailsActivity extends AppCompatActivity {
+public class ImovelDetailsActivity extends AppCompatActivity implements ImovelLoadedListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -93,5 +94,12 @@ public class ImovelDetailsActivity extends AppCompatActivity {
         }
         bottomFragmentPresenter = new ImovelDetailsBottomPresenter(ImovelApi.getInstance(), bottomFragment,
                 SchedulerProvider.getInstance());
+    }
+
+    @Override
+    public void imovelLoaded(Imovel imovel) {
+        ImovelDetailsToolbarFragment imovelDetailsToolbarFragment =
+                (ImovelDetailsToolbarFragment) getSupportFragmentManager().findFragmentById(R.id.toolbar_view_container);
+        imovelDetailsToolbarFragment.addImage(imovel.getFotos());
     }
 }

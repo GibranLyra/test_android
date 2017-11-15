@@ -1,13 +1,10 @@
 package gibran.com.br.zaptest.imoveldetails.toolbarfragment;
 
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -27,8 +24,8 @@ public class ImovelDetailsToolbarFragment extends BaseFragment<ImovelDetailsTool
     private static final String EXTRA_IMAGES = "images";
     private Unbinder unbinder;
 
-    @BindView(R.id.fragment_imovel_details_top_image)
-    ImageView imageView;
+    @BindView(R.id.fragment_imovel_details_toolbar_pager)
+    ViewPager viewPager;
     private ArrayList<String> images;
 
     public static ImovelDetailsToolbarFragment newInstance(ArrayList<String> images) {
@@ -44,23 +41,8 @@ public class ImovelDetailsToolbarFragment extends BaseFragment<ImovelDetailsTool
         View view = inflater.inflate(R.layout.fragment_imovel_details_toolbar, container, false);
         unbinder = ButterKnife.bind(this, view);
         images = getArguments().getStringArrayList(EXTRA_IMAGES);
-        if (!images.isEmpty()) {
-            for (String image : images) {
-                if (!TextUtils.isEmpty(image)) {
-                    Glide.with(getContext())
-                            .load(image)
-                            .into(imageView);
-                } else {
-                    Glide.with(getContext())
-                            .load(R.drawable.placeholder)
-                            .into(imageView);
-                }
-            }
-        } else {
-            Glide.with(getContext())
-                    .load(R.drawable.placeholder)
-                    .into(imageView);
-        }
+        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getContext(), images);
+        viewPager.setAdapter(pagerAdapter);
         return view;
     }
 
@@ -91,5 +73,6 @@ public class ImovelDetailsToolbarFragment extends BaseFragment<ImovelDetailsTool
 
     public void addImage(ArrayList<String> images) {
         images.addAll(images);
+
     }
 }

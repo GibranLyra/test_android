@@ -97,19 +97,11 @@ public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBotto
     public void showImovel(Imovel imovel) {
         this.imovel = imovel;
         infoContainer.setVisibility(View.VISIBLE);
+        if (getContext() instanceof ImovelLoadedListener) {
+            ((ImovelLoadedListener) getContext()).imovelLoaded(imovel);
+        }
         setupView(imovel);
     }
-
-    private void setupView(Imovel imovel) {
-        typeView.setText(imovel.getTipoImovel());
-        salePrice.setText(getContext().getResources().getString(R.string.imovel_price,
-                String.valueOf(imovel.getPrecoVenda())));
-        addressView.setText(getContext().getResources().getString(R.string.imovel_address,
-                imovel.getEndereco().getBairro(),
-                imovel.getEndereco().getCidade()));
-        descriptionView.setText(imovel.getObservacao());
-    }
-
 
     @Override
     public void showLoading(boolean show) {
@@ -119,6 +111,7 @@ public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBotto
             progressBar.setVisibility(View.GONE);
         }
     }
+
 
     @Override
     public void showImovelError() {
@@ -139,5 +132,15 @@ public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBotto
     @Override
     public void setPresenter(ImovelDetailsBottomContract.Presenter presenter) {
         this.presenter = presenter;
+    }
+
+    private void setupView(Imovel imovel) {
+        typeView.setText(imovel.getTipoImovel());
+        salePrice.setText(getContext().getResources().getString(R.string.imovel_price,
+                String.valueOf(imovel.getPrecoVenda())));
+        addressView.setText(getContext().getResources().getString(R.string.imovel_address,
+                imovel.getEndereco().getBairro(),
+                imovel.getEndereco().getCidade()));
+        descriptionView.setText(imovel.getObservacao());
     }
 }
