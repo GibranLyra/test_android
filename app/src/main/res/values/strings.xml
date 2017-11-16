@@ -16,4 +16,5 @@
     <string name="dialog_send">Enviar</string>
     <string name="text_is_mandatory">Este campo é obrigatório.</string>
     <string name="invalid_email">Email inválido</string>
+    <string name="generic_error_verbose_text">Verifique sua internet e tente novamente mais tarde.</string>
 </resources>

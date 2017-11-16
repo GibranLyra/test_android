@@ -19,5 +19,6 @@
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
         android:paddingTop="@dimen/normal_padding"
-        android:text="Verifique sua internet e tente novamente mais tarde."/>
+        android:text="@string/generic_error_verbose_text"
+        android:textAlignment="center"/>
 </LinearLayout>
