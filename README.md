@@ -18,6 +18,6 @@
  Clone the project, make sure that you have java 8 and the JAVA_HOME enviroment variable configured.
  
  # Tests locations
- - Unit tests under test folder.
- - Instrumentation test under androidtests folder.
+ - Unit tests under [test folder](https://github.com/GibranLyra/test_android/tree/master/app/src/androidTest/java/gibran/com/br/zaptest).
+ - Instrumentation test under [androidtests folder](https://github.com/GibranLyra/test_android/tree/master/app/src/androidTest/java/gibran/com/br/zaptest).
 
