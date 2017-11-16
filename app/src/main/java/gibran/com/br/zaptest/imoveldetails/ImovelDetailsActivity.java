@@ -66,7 +66,7 @@ public class ImovelDetailsActivity extends AppCompatActivity implements ImovelLo
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle(imovel.getTipoImovel());
+            actionBar.setTitle(imovel.getSubtipoImovel());
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         setupContactButton();
