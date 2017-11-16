@@ -19,6 +19,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -48,10 +49,13 @@ public class ImovelScreenTest {
      * idle state. This helps Espresso to synchronize your test actions, which makes tests significantly
      * more reliable.
      */
+    private ImovelActivity activity;
+
     @Before
     public void registerIdlingResource() {
         Espresso.registerIdlingResources(
                 imovelIntentsTestRule.getActivity().getCountingIdlingResource());
+        activity = imovelIntentsTestRule.getActivity();
     }
 
     @Test
@@ -79,9 +83,21 @@ public class ImovelScreenTest {
         onView(withId(R.id.contact_dialog_email)).perform(click(), replaceText("gibranlyra@gmail.com"));
         onView(withId(R.id.contact_dialog_phone)).perform(click(), replaceText("99999999"));
         onView(withText(R.string.dialog_send)).perform(click());
-
+        onView(withId(R.id.contact_dialog_progress)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void sendContact_invalidEmail() {
+        onView(withId(R.id.fragment_imovel_recycler))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+        onView(withId(R.id.activity_imovel_details_contact_button)).perform(click());
+        onView(withId(R.id.contact_dialog_name)).perform(click(), replaceText("Gibran Lyra"));
+        onView(withId(R.id.contact_dialog_email)).perform(click(), replaceText("invalidEmail"));
+        onView(withId(R.id.contact_dialog_phone)).perform(click(), replaceText("99999999"));
+        onView(withText(R.string.dialog_send)).perform(click());
+        onView(withId(R.id.contact_dialog_email))
+                .check(matches(hasErrorText(activity.getString(R.string.invalid_email))));
+    }
 
     /**
      * Unregister your Idling Resource so it can be garbage collected and does not leak any memory.

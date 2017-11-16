@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize">
+    android:paddingTop="?attr/actionBarSize"
+    android:contentDescription="fragment_imovel_root_layout">
 
-
-        <include
-            android:id="@+id/no_error_view"
-            layout="@layout/view_error"
-            android:visibility="gone"
-            tools:visibility="visible"/>
+    <include
+        android:id="@+id/no_error_view"
+        layout="@layout/view_error"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/fragment_imovel_progress_bar"
