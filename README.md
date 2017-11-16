@@ -1,9 +1,13 @@
-# Mvp Sample
+# Test Android
 
- A demonstration of MVP pattern using the trending libraries of the android world.
- This app is based on the [Google TODO MVP pattern](https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava)
+### A demonstration of MVP pattern using the trending libraries of the android world.
+ 
+This app is based on the [Google TODO MVP pattern](https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava), this pattern is used to make the business logic easily testable.
+- To get the lastest build you can email me(<lyra.gibran@gmail.com>) or if you have any doubts.
+
 
 ## Used Libraries
+- [Retrofit](http://square.github.io/retrofit)
 - [RxJava2](https://github.com/ReactiveX/RxJava)
 - [Butterknife](https://github.com/JakeWharton/butterknife)
 - [Timber](https://github.com/JakeWharton/timber)
@@ -20,4 +24,7 @@
  # Tests locations
  - Unit tests under [test folder](https://github.com/GibranLyra/test_android/tree/master/app/src/androidTest/java/gibran/com/br/zaptest).
  - Instrumentation test under [androidtests folder](https://github.com/GibranLyra/test_android/tree/master/app/src/androidTest/java/gibran/com/br/zaptest).
+
+
+ 
 
