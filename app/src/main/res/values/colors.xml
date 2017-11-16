@@ -7,4 +7,5 @@
     <color name="secondary_text_white">#C5CAE9</color>
     <color name="secondary_text">#757575</color>
     <color name="colorAccent">#ff5a00</color>
+    <color name="colorError">#B71C1C</color>
 </resources>

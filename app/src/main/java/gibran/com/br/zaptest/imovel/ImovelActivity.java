@@ -1,7 +1,7 @@
 package gibran.com.br.zaptest.imovel;
 
-import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.CoordinatorLayout;
@@ -32,11 +32,6 @@ public class ImovelActivity extends AppCompatActivity {
 
     private ImovelContract.Presenter presenter;
 
-    public static Intent createIntent(Context context) {
-        Intent intent = new Intent(context, ImovelActivity.class);
-        return intent;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +54,13 @@ public class ImovelActivity extends AppCompatActivity {
                         new ProfileDrawerItem().withName("Gibran Lyra").withEmail("lyra.gibran@gmail.com")
                                 .withIcon(getResources().getDrawable(R.drawable.profile))
                 )
-                .withOnAccountHeaderListener((view, profile, currentProfile) -> false)
+                .withOnAccountHeaderListener((view, profile, currentProfile) -> {
+                    String url = "https://github.com/GibranLyra";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                    return false;
+                })
                 .build();
         //Now create your drawer and pass the AccountHeader.Result
         new DrawerBuilder()

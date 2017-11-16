@@ -22,6 +22,9 @@ public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBotto
         implements ImovelDetailsBottomContract.ContractView {
 
     private static final String LOADED_IMOVEL = "loadedImovel";
+
+    @BindView(R.id.no_error_view)
+    View errorView;
     @BindView(R.id.fragment_imovel_details_bottom_progress_bar)
     ContentLoadingProgressBar progressBar;
     @BindView(R.id.fragment_imovel_details_bottom_info_container)
@@ -107,6 +110,8 @@ public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBotto
     public void showLoading(boolean show) {
         if (show) {
             progressBar.setVisibility(View.VISIBLE);
+            errorView.setVisibility(View.GONE);
+            infoContainer.setVisibility(View.GONE);
         } else {
             progressBar.setVisibility(View.GONE);
         }
@@ -116,7 +121,7 @@ public class ImovelDetailsBottomFragment extends BaseFragment<ImovelDetailsBotto
     @Override
     public void showImovelError() {
         super.showImovelError();
-        infoContainer.setVisibility(View.GONE);
+        errorView.setVisibility(View.VISIBLE);
     }
 
     @Override

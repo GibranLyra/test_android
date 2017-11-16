@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize">
 
+
+        <include
+            android:id="@+id/no_error_view"
+            layout="@layout/view_error"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
     <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/fragment_imovel_progress_bar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
-
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/fragment_imovel_swipe"

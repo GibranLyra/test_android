@@ -30,12 +30,14 @@ import gibran.com.br.zaptest.base.BaseFragment;
 public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> implements ImovelContract.ContractView {
 
     private static final String LOADED_IMOVEIS = "loadedImoveis";
+    @BindView(R.id.no_error_view)
+    View errorView;
     @BindView(R.id.fragment_imovel_progress_bar)
-    protected ProgressBar progressBar;
+    ProgressBar progressBar;
     @BindView(R.id.fragment_imovel_recycler)
-    protected RecyclerView recyclerView;
+    RecyclerView recyclerView;
     @BindView(R.id.fragment_imovel_swipe)
-    protected SwipeRefreshLayout swipeToRefresh;
+    SwipeRefreshLayout swipeToRefresh;
 
     private Unbinder unbinder;
     private ImovelContract.Presenter presenter;
@@ -113,8 +115,9 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
 
     @Override
     public void showImoveis(ArrayList<Imovel> imoveis) {
-        swipeToRefresh.setRefreshing(false);
         this.imovels = imoveis;
+        swipeToRefresh.setRefreshing(false);
+        recyclerView.setVisibility(View.VISIBLE);
         fastAdapter = new FastItemAdapter<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -134,8 +137,9 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
 
     @Override
     public void showImovelError() {
+        super.showImovelError();
         swipeToRefresh.setRefreshing(false);
-        showImovelError();
+        errorView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -143,12 +147,13 @@ public class ImovelFragment extends BaseFragment<ImovelContract.Presenter> imple
         isViewLoaded = !show;
         if (show) {
             progressBar.setVisibility(View.VISIBLE);
+            errorView.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
         } else {
             progressBar.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
         }
     }
+
 
     @Override
     public void showImovelDetailsUi(Imovel imovel, @Nullable View v) {
