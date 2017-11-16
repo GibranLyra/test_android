@@ -1,21 +1,23 @@
 # Mvp Sample
 
  A demonstration of MVP pattern using the trending libraries of the android world.
+ This app is based on the [Google TODO MVP pattern](https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava)
 
 ## Used Libraries
-- RxJava2
-- Butterknife
-- Timber
-- Picasso
-- FastAdapter
-- JodaTime
+- [RxJava2](https://github.com/ReactiveX/RxJava)
+- [Butterknife](https://github.com/JakeWharton/butterknife)
+- [Timber](https://github.com/JakeWharton/timber)
+- [Glide](https://github.com/bumptech/glide)
+- [FastAdapter](https://github.com/mikepenz/FastAdapter)
+- [JodaTimeAndroid](https://github.com/dlew/joda-time-android)
+- [Crashlytics](https://try.crashlytics.com)
 - JUnit
-- Espresso
+- [Espresso](https://developer.android.com/training/testing/espresso/index.html)
 
 # Instalation instructions
  Clone the project, make sure that you have java 8 and the JAVA_HOME enviroment variable configured.
  
  # Tests locations
  - Unit tests under test folder.
- - instrumentation test under androidtests folder.
+ - Instrumentation test under androidtests folder.
 
