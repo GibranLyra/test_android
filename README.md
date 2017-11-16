@@ -3,7 +3,7 @@
 ### A demonstration of MVP pattern using the trending libraries of the android world.
  
 App is based on the [Google TODO MVP pattern](https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava), this pattern was choosed to make the business logic easily testable.
-- To get the lastest build you can email me(<lyra.gibran@gmail.com>) or if you have any doubts.
+- If you have any doubts or to get the lastest build on fabric you can email me(<lyra.gibran@gmail.com>).
 
 ### App Screens
 
