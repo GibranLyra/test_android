@@ -2,9 +2,14 @@
 
 ### A demonstration of MVP pattern using the trending libraries of the android world.
  
-App is based on the [Google TODO MVP pattern](https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava), this pattern is used to make the business logic easily testable.
+App is based on the [Google TODO MVP pattern](https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava), this pattern was choosed to make the business logic easily testable.
 - To get the lastest build you can email me(<lyra.gibran@gmail.com>) or if you have any doubts.
 
+### App Screens
+
+<img src="https://github.com/GibranLyra/test_android/blob/master/app/src/gifs/list-to-details.gif" width="250"/>
+<img src="https://github.com/GibranLyra/test_android/blob/master/app/src/gifs/contact-validation.gif" width="250"/>
+<img src="https://github.com/GibranLyra/test_android/blob/master/app/src/gifs/back-from-details-drawer.gif" width="250">
 
 ## Used Libraries
 - [Retrofit](http://square.github.io/retrofit)
